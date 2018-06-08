@@ -1,0 +1,15 @@
+<diagram program="umletino" version="14.2"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>20</x><y>110</y><w>210</w><h>70</h></coordinates><panel_attributes>_counselor_
+--
+counselorID: int (Unique) &lt;&lt;PK&gt;&gt;
+firstName: varchar(30)
+lastName: varchar(30)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>220</y><w>210</w><h>90</h></coordinates><panel_attributes>_client_
+--
+counselorID: int &lt;&lt;FK&gt;&gt;
+clientID: int (Unique) &lt;&lt;PK&gt;&gt;
+firstName: varchar(30)
+lastName: varchar(30)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>340</y><w>210</w><h>90</h></coordinates><panel_attributes>_note_
+--
+clientID: int &lt;&lt;FK&gt;&gt;
+noteID: int (Unique) &lt;&lt;PK&gt;&gt;
+text: varchar(5000)
+timestamp: datetime</panel_attributes><additional_attributes></additional_attributes></element></diagram>

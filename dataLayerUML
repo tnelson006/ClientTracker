@@ -1,0 +1,58 @@
+<diagram program="umletino" version="14.2"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>40</x><y>0</y><w>350</w><h>320</h></coordinates><panel_attributes>Counselor
+--
+id: int
+firstName: String
+lastName: String
+clients: Vector
+--
+public Counselor()
+public Counselor(int id, String firstName, String lastName)
+---------
+public int getID()
+public String getFirstName()
+public String getLastName()
+public Vector getClients()
+---------
+public void setID(int id)
+public void setFirstName(String firstName)
+public void setLastName(String lastName)
+public void setClients(Vector clients)
+---------
+public void addClient(Client client)
+public void removeClient(Client client)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>340</y><w>350</w><h>320</h></coordinates><panel_attributes>Client
+--
+id: int
+firstName: String
+lastName: String
+notes: Vector
+--
+public Client()
+public Client(int id, String firstName, String lastName)
+---------
+public int getID()
+public String getFirstName()
+public String getLastName()
+public Vector getNotes()
+---------
+public void setID(int id)
+public void setFirstName(String firstName)
+public void setLastName(String lastName)
+public void setNotes(Vector notes)
+---------
+public void addNote(Note note)
+public void removeNote(Note note)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>680</y><w>350</w><h>230</h></coordinates><panel_attributes>Note
+--
+id: int
+text: String
+timestamp: Date
+--
+public Note()
+public Note(int id, String text, Date timestamp)
+---------
+public int getID()
+public String getText()
+public Date getDate()
+---------
+public void setID(int id)
+public void setText(String text)
+public void setDate(Date date)</panel_attributes><additional_attributes></additional_attributes></element></diagram>
