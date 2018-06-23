@@ -3,8 +3,12 @@ package com.clienttracker.main;
 import com.clienttracker.model.domain.Client;
 import com.clienttracker.model.domain.Counselor;
 import com.clienttracker.model.domain.Note;
+import com.clienttracker.view.mainjframe.MainJFrame;
+import com.clienttracker.view.mainjframe.MainJFrameController;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.UIManager;
+import org.apache.log4j.Logger;
 
 /**
  * This class contains the client side main function that will create and manage
@@ -18,7 +22,7 @@ public class ClientTracker {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
-    List<Client> clients = new ArrayList<>();
+    ArrayList<Client> clients = new ArrayList<>();
     Counselor co = new Counselor(1, "Lauren", "Nelson", clients);
 
     List<Note> notes1 = new ArrayList<>();
@@ -39,6 +43,11 @@ public class ClientTracker {
     co.addClient(cl1);
     co.addClient(cl2);
 
-    System.out.println(co.toString());
+    MainJFrame mainJFrame = new MainJFrame();
+    mainJFrame.setClients(co.getClients());
+
+    @SuppressWarnings("unused")
+		MainJFrameController mainJFrameController =
+				new MainJFrameController(mainJFrame);
   }
 }

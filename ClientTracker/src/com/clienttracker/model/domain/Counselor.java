@@ -14,14 +14,14 @@ public class Counselor {
 	private Integer uniqueID = null;
 	private String firstName;
 	private String lastName;
-  private List<Client> clients = new ArrayList<>();
+  private ArrayList<Client> clients = new ArrayList<>();
 
 	/**
 	 * Constructor
 	 * All parameters
 	 */
 	public Counselor(Integer uniqueID, String firstName,
-          String lastName, List<Client> clients){
+          String lastName, ArrayList<Client> clients){
 		this.uniqueID = uniqueID;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -32,7 +32,7 @@ public class Counselor {
 	 * Default constructor
 	 * All parameters, minus uniqueID
 	 */
-	public Counselor(String firstName, String lastName, List<Client> clients){
+	public Counselor(String firstName, String lastName, ArrayList<Client> clients){
 		this.firstName = firstName;
 		this.lastName = lastName;
     this.clients = clients;
@@ -66,7 +66,7 @@ public class Counselor {
 		this.lastName = lastName;
 	}
 
-  public List<Client> getClients(){
+  public ArrayList<Client> getClients(){
 		return clients;
 	}
 
@@ -76,7 +76,7 @@ public class Counselor {
 		}
 	}
 
-	public void setClients(List<Client> clients){
+	public void setClients(ArrayList<Client> clients){
 		this.clients = clients;
 	}
 
