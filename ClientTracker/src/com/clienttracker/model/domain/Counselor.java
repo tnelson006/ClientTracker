@@ -1,7 +1,6 @@
 package com.clienttracker.model.domain;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class holds all of the information necessary for a counselor.

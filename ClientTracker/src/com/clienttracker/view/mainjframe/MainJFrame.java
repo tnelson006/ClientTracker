@@ -61,7 +61,6 @@ public class MainJFrame extends javax.swing.JFrame{
 		jListClients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jListClients.setLayoutOrientation(JList.VERTICAL);
 		jListClients.setVisibleRowCount(-1);
-    //jListClients.addListSelectionListener(listener);
 
 		jScrollPaneClients = new javax.swing.JScrollPane(jListClients);
 		jScrollPaneClients.setPreferredSize(new Dimension(250, 250));
@@ -143,18 +142,6 @@ public class MainJFrame extends javax.swing.JFrame{
 		jDesktopPane.add(jif);
 	}
 
-	public boolean updateDatabase(ArrayList<Client> clients){
-		boolean result = false;
-		try{
-			clientDatabase = clients;
-			result = true;
-		}catch (Exception e){
-			//log.error(e.toString());
-		}
-		return result;
-
-	}
-
   public javax.swing.JButton getAddNoteButton(){
 		return jButtonAddNote;
 	}
@@ -219,11 +206,12 @@ public class MainJFrame extends javax.swing.JFrame{
 		jButtonDeleteClient.setEnabled(enabled);
   }
 
-	public ArrayList<Client> getDatabase(){
-		return clientDatabase;
+	public ArrayList<Client> getClients(){
+		return clientArray;
 	}
 
   public void setClients(ArrayList<Client> clients){
+    this.clientArray = clients;
 		jPanel.remove(jScrollPaneClients);
     jListClients = new javax.swing.JList(clients.toArray());
     jListClients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -257,7 +245,6 @@ public class MainJFrame extends javax.swing.JFrame{
 	private javax.swing.JMenu jFileMenu;
 	private javax.swing.JMenuItem jFileMenuItemExit;
 	private javax.swing.JMenuBar jMenuBar;
-	private ArrayList<Client> clientDatabase;
   private ArrayList<Client> clientArray = new ArrayList<Client>();
   private ArrayList<Client> noteArray = new ArrayList<Client>();
 	private javax.swing.JButton jButtonAddClient;

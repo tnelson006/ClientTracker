@@ -3,6 +3,7 @@ package com.clienttracker.main;
 import com.clienttracker.model.domain.Client;
 import com.clienttracker.model.domain.Counselor;
 import com.clienttracker.model.domain.Note;
+import com.clienttracker.socket.ClientComm.ClientComm;
 import com.clienttracker.view.mainjframe.MainJFrame;
 import com.clienttracker.view.mainjframe.MainJFrameController;
 import java.util.ArrayList;
@@ -18,12 +19,12 @@ import org.apache.log4j.Logger;
  */
 public class ClientTracker {
 
-  /**
-   * @param args the command line arguments
-   */
+  public static ClientComm clientComm;
+  public static Counselor co;
+
   public static void main(String[] args) {
     ArrayList<Client> clients = new ArrayList<>();
-    Counselor co = new Counselor(1, "Lauren", "Nelson", clients);
+    co = new Counselor(1, "Lauren", "Nelson", clients);
 
     List<Note> notes1 = new ArrayList<>();
     List<Note> notes2 = new ArrayList<>();
@@ -42,6 +43,8 @@ public class ClientTracker {
 
     co.addClient(cl1);
     co.addClient(cl2);
+
+    clientComm = new ClientComm("localhost", 8080);
 
     MainJFrame mainJFrame = new MainJFrame();
     mainJFrame.setClients(co.getClients());
