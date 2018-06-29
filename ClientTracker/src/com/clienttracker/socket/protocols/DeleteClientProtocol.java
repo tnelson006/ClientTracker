@@ -32,15 +32,15 @@ public class DeleteClientProtocol {
     String fromClient;
 
       fromClient = Integer.toString(DELETECLIENTPROTOCOL);
-      System.out.println("Client: " + fromClient);
+      System.out.println("Client (protocol): " + fromClient);
       out.println(fromClient);
 
       fromClient = Integer.toString(ClientTracker.co.getUniqueID());
-      System.out.println("Client: " + fromClient);
+      System.out.println("Client (counselor ID): " + fromClient);
       out.println(fromClient);
 
       fromClient = client.getUniqueID().toString();
-      System.out.println("Client: " + fromClient);
+      System.out.println("Client (client ID): " + fromClient);
       out.println(fromClient);
   }
 }

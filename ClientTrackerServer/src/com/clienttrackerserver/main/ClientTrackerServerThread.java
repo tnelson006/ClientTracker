@@ -28,17 +28,20 @@ public class ClientTrackerServerThread extends Thread {
 
           int protocol;
           protocol = Integer.parseInt(in.readLine());
-          System.out.println(protocol);
+          System.out.println("Server protocol #: " + protocol);
 
           switch (protocol) {
             case 1:
               AddClientProtocol acp = new AddClientProtocol(out, in);
               acp.executeProtocol();
+              break;
             case 2:
               DeleteClientProtocol dcp = new DeleteClientProtocol(in);
               dcp.executeProtocol();
+              break;
             default:
               System.out.println(protocol + " is not a supported protocol number.");
+              break;
           }
 
           socket.close();

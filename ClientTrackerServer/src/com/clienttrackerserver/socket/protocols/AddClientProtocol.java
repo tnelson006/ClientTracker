@@ -20,6 +20,7 @@ public class AddClientProtocol {
   BufferedReader in;
 
   public AddClientProtocol(PrintWriter out, BufferedReader in) {
+    System.out.println("Instantiating AddClientProtocol");
     this.out = out;
     this.in = in;
   }

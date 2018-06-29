@@ -19,6 +19,7 @@ public class DeleteClientProtocol {
   BufferedReader in;
 
   public DeleteClientProtocol(BufferedReader in) {
+    System.out.println("Instantiating DeleteClientProtocol");
     this.in = in;
   }
 

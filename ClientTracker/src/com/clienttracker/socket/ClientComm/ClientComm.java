@@ -22,8 +22,6 @@ public class ClientComm {
   public ClientComm(String hostName, int portNumber) {
     this.hostName = hostName;
     this.portNumber = portNumber;
-
-    enableSocket();
   }
 
   private void enableSocket() {
@@ -40,16 +38,29 @@ public class ClientComm {
     }
   }
 
+  private void closeSocket() {
+    try {
+      ccSocket.close();
+    }
+    catch (IOException e) {
+      System.err.println("Couldn't get I/O for the connection to " + hostName);
+    }
+  }
+
   public void addClientComm(Client client) {
+    enableSocket();
     System.out.println(client);
     AddClientProtocol acp = new AddClientProtocol(client, out, in);
     acp.executeProtocol();
     System.out.println(client);
+    closeSocket();
   }
 
   public void deleteClientComm(Client client) {
+    enableSocket();
     System.out.println(client);
     DeleteClientProtocol dcp = new DeleteClientProtocol(client, out);
     dcp.executeProtocol();
+    closeSocket();
   }
 }
