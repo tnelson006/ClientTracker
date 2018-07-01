@@ -5,6 +5,7 @@ import com.clienttrackerserver.socket.protocols.AddClientProtocol;
 import com.clienttrackerserver.socket.protocols.DeleteClientProtocol;
 import java.net.*;
 import java.io.*;
+import java.sql.Connection;
 
 /**
  *
@@ -12,10 +13,12 @@ import java.io.*;
  */
 public class ClientTrackerServerThread extends Thread {
     private Socket socket = null;
+    private Connection conn = null;
 
-    public ClientTrackerServerThread(Socket socket) {
+    public ClientTrackerServerThread(Socket socket, Connection conn) {
         super("ClientTrackerServerThread");
         this.socket = socket;
+        this.conn = conn;
     }
 
     public void run() {
@@ -32,11 +35,11 @@ public class ClientTrackerServerThread extends Thread {
 
           switch (protocol) {
             case 1:
-              AddClientProtocol acp = new AddClientProtocol(out, in);
+              AddClientProtocol acp = new AddClientProtocol(out, in, conn);
               acp.executeProtocol();
               break;
             case 2:
-              DeleteClientProtocol dcp = new DeleteClientProtocol(in);
+              DeleteClientProtocol dcp = new DeleteClientProtocol(in, conn);
               dcp.executeProtocol();
               break;
             default:

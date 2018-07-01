@@ -24,7 +24,7 @@ public class ClientTracker {
 
   public static void main(String[] args) {
     ArrayList<Client> clients = new ArrayList<>();
-    co = new Counselor(1, "Lauren", "Nelson", clients);
+    co = new Counselor(2, "Lauren", "Nelson", clients);
 
     List<Note> notes1 = new ArrayList<>();
     List<Note> notes2 = new ArrayList<>();

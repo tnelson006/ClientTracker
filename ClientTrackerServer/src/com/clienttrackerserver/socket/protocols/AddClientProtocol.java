@@ -9,6 +9,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -18,11 +22,14 @@ public class AddClientProtocol {
 
   PrintWriter out;
   BufferedReader in;
+  Connection conn;
+  String query = "insert into Clients(counselorID, firstName, lastName) values(%s, '%s', '%s')";
 
-  public AddClientProtocol(PrintWriter out, BufferedReader in) {
+  public AddClientProtocol(PrintWriter out, BufferedReader in, Connection conn) {
     System.out.println("Instantiating AddClientProtocol");
     this.out = out;
     this.in = in;
+    this.conn = conn;
   }
 
   public void executeProtocol() {
@@ -35,7 +42,15 @@ public class AddClientProtocol {
       clientLastName = in.readLine();
       System.out.println(clientLastName);
 
-      out.println("1");
+      Statement stmt = conn.createStatement();
+      stmt.execute(String.format(query, counselorID, clientFirstName, clientLastName));
+
+      ResultSet rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
+      if (rs.next()) {
+        out.println(rs.getString(1));
+      } else {
+        out.println("-1"); //Indicate an error to the client
+      }
 
     } catch (UnknownHostException e) {
         System.err.println("Don't know about host.");
@@ -43,6 +58,10 @@ public class AddClientProtocol {
     } catch (IOException e) {
         System.err.println("Couldn't get I/O for the connection.");
         System.exit(1);
+    } catch (SQLException e) {
+        System.err.println("Database bologna 1: ");
+        e.printStackTrace();
+        System.exit(-1);
     }
   }
 }
