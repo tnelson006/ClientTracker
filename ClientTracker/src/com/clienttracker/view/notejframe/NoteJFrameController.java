@@ -29,10 +29,17 @@ public class NoteJFrameController implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e){
-		if(e.getSource().equals(noteJFrame.getCancelButton()))
-			cancel_actionPerformed();
-		else if(e.getSource().equals(noteJFrame.getSaveNoteButton()))
-			addNote_actionPerformed();
+		if(e.getSource().equals(noteJFrame.getCancelButton())){
+      cancel_actionPerformed();
+    }
+			
+		else if(e.getSource().equals(noteJFrame.getSaveNoteButton())){
+			if(noteJFrame.isNoteNew()) {
+        addNote_actionPerformed();
+      } else {
+        editNote_actionPerformed();
+      }
+    }
 	}
 
 	public void cancel_actionPerformed(){
@@ -41,6 +48,13 @@ public class NoteJFrameController implements ActionListener{
 
 	public void addNote_actionPerformed(){
 		Note note = noteJFrame.getEnteredData();
-    mainJFrameController.newNoteFromDialog(note);
+    mainJFrameController.addNote(note);
+    noteJFrame.dispose();
+	}
+
+  public void editNote_actionPerformed(){
+		Note note = noteJFrame.getEnteredData();
+    mainJFrameController.editNote(note);
+    noteJFrame.dispose();
 	}
 }

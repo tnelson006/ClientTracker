@@ -21,6 +21,7 @@ public class NoteJFrame extends javax.swing.JFrame{
 
   private Note note;
 	private NoteJFrameController noteJFrameController;
+  private boolean newNote;
 
   public NoteJFrame(Note note, MainJFrameController mainJFrameController){
 
@@ -72,8 +73,16 @@ public class NoteJFrame extends javax.swing.JFrame{
 		jButtonCancel.setBounds(25, 350, 150, 50);
 
 		jButtonSaveNote.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-    if(note != null) jButtonSaveNote.setLabel("Edit Note");
-    else jButtonSaveNote.setLabel("Add Note");
+
+    if(note != null) {
+      jButtonSaveNote.setLabel("Edit Note");
+      newNote = false;
+    }
+    else {
+      jButtonSaveNote.setLabel("Add Note");
+      newNote = true;
+    }
+
 		setEnabledSaveNoteButton(true);
 		jPanel.add(jButtonSaveNote);
 		jButtonSaveNote.setBounds(250, 350, 150, 50);
@@ -99,6 +108,10 @@ public class NoteJFrame extends javax.swing.JFrame{
 	public void setEnabledSaveNoteButton(boolean enabled){
 		jButtonSaveNote.setEnabled(enabled);
 	}
+
+  public boolean isNoteNew(){
+    return newNote;
+  }
 
 	private javax.swing.JButton jButtonCancel;
 	private javax.swing.JButton jButtonSaveNote;

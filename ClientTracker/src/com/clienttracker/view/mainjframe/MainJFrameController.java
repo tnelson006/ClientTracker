@@ -13,6 +13,7 @@ import com.clienttracker.view.notejframe.NoteJFrame;
 //import com.diagnosispro.view.addnotejframe.AddNoteJFrame;
 //import com.diagnosispro.view.createclientjframe.CreateClientJFrame;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -113,17 +114,13 @@ public class MainJFrameController implements ActionListener{
     System.out.println(mainJFrame.getNoteListIndex());
     if(mainJFrame.getNoteListIndex() != -1) {
       System.out.println((Note)mainJFrame.getNoteListValue());
+      deleteNote(mainJFrame.getNoteListIndex());
     }
 	}
 
 	private void exit_actionPerformed() {
 		System.exit(0);
 	}
-
-  public void newNoteFromDialog(Note note) {
-    System.out.println("The new note text is:");
-    System.out.println(note.getText());
-  }
 
   public void addClient(Client client) {
     ArrayList<Client> clients = mainJFrame.getClients();
@@ -136,6 +133,58 @@ public class MainJFrameController implements ActionListener{
     ArrayList<Client> clients = mainJFrame.getClients();
     clients.remove(client);
     mainJFrame.setClients(clients);
+    addListeners();
+  }
+
+  public void addNote(Note note) {
+    ArrayList<Client> clients = mainJFrame.getClients();
+    int selectedClientIndex = mainJFrame.getClientListIndex();
+
+    Client tempClient = clients.get(selectedClientIndex);
+    tempClient.addNote(note);
+
+    clients.set(selectedClientIndex, tempClient);
+    mainJFrame.setClients(clients);
+    mainJFrame.getClientList().setSelectedIndex(selectedClientIndex);
+
+    mainJFrame.setNotes(tempClient.getNotes());
+
+    addListeners();
+  }
+
+  public void editNote(Note note) {
+    ArrayList<Client> clients = mainJFrame.getClients();
+    int selectedClientIndex = mainJFrame.getClientListIndex();
+
+    Client tempClient = clients.get(selectedClientIndex);
+    List<Note> tempNotes = tempClient.getNotes();
+    tempNotes.set(mainJFrame.getNoteListIndex(), note);
+    tempClient.setNotes(tempNotes);
+
+    clients.set(selectedClientIndex, tempClient);
+    mainJFrame.setClients(clients);
+    mainJFrame.getClientList().setSelectedIndex(selectedClientIndex);
+
+    mainJFrame.setNotes(tempClient.getNotes());
+
+    addListeners();
+  }
+
+  public void deleteNote(int noteIndex) {
+    ArrayList<Client> clients = mainJFrame.getClients();
+    int selectedClientIndex = mainJFrame.getClientListIndex();
+
+    Client tempClient = clients.get(selectedClientIndex);
+    List<Note> tempNotes = tempClient.getNotes();
+    tempNotes.remove(noteIndex);
+    tempClient.setNotes(tempNotes);
+
+    clients.set(selectedClientIndex, tempClient);
+    mainJFrame.setClients(clients);
+    mainJFrame.getClientList().setSelectedIndex(selectedClientIndex);
+
+    mainJFrame.setNotes(tempClient.getNotes());
+
     addListeners();
   }
 }

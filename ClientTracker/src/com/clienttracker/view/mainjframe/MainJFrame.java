@@ -7,6 +7,7 @@ import com.clienttracker.model.domain.Client;
 import com.clienttracker.model.domain.Note;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
@@ -225,7 +226,7 @@ public class MainJFrame extends javax.swing.JFrame{
     pack();
 	}
 
-  public void setNotes(ArrayList<Note> notes){
+  public void setNotes(List<Note> notes){
 		jPanel.remove(jScrollPaneNotes);
     jListNotes = new javax.swing.JList(notes.toArray());
     jListNotes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
