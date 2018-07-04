@@ -14,6 +14,7 @@ import com.clienttracker.view.notejframe.NoteJFrame;
 //import com.diagnosispro.view.createclientjframe.CreateClientJFrame;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -40,6 +41,10 @@ public class MainJFrameController implements ActionListener{
 
 		mainJFrame.setVisible(true);
 	}
+
+  public MainJFrame getMainJFrame(){
+    return mainJFrame;
+  }
 
   public void addListeners(){
     mainJFrame.getClientList().addListSelectionListener(new ListSelectionListener() {

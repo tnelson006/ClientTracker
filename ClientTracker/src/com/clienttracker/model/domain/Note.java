@@ -1,6 +1,5 @@
 package com.clienttracker.model.domain;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
@@ -13,12 +12,10 @@ import java.util.Objects;
  *
  * @author Travis Nelson
  */
-public class Note implements Serializable{
-
-	private static final long serialVersionUID = 7661633977L;
+public class Note{
 
   private String text;
-  private Integer clientID = null;
+  private Integer noteID = null;
   private Date date;
 
   //
@@ -36,12 +33,12 @@ public class Note implements Serializable{
  * Getter/setter pairs
  */
 
-  public int getClientID() {
-    return clientID;
+  public int getNoteID() {
+    return noteID;
   }
 
-  public void setClientID(int clientID) {
-    this.clientID = clientID;
+  public void setNoteID(int noteID) {
+    this.noteID = noteID;
   }
 
   public Date getDate() {
@@ -80,7 +77,7 @@ public class Note implements Serializable{
       return false;
     }
     final Note other = (Note) obj;
-    if (!this.clientID.equals(other.clientID)) {
+    if (!this.noteID.equals(other.noteID)) {
       return false;
     }
     if (!Objects.equals(this.text, other.text)) {
@@ -94,7 +91,7 @@ public class Note implements Serializable{
 
   @Override
   public String toString() {
-    return "Note{" + "text=" + text + ", clientID=" + clientID + ", date=" + date + '}';
+    return "Note{" + "text=" + text + ", noteID=" + noteID + ", date=" + date + '}';
   }
 
   /**

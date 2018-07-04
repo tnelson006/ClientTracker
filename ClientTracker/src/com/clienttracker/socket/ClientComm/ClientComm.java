@@ -5,7 +5,9 @@ package com.clienttracker.socket.ClientComm;
  * @author T-Nel
  */
 import com.clienttracker.model.domain.Client;
+import com.clienttracker.model.domain.Note;
 import com.clienttracker.socket.protocols.AddClientProtocol;
+import com.clienttracker.socket.protocols.AddNoteProtocol;
 import com.clienttracker.socket.protocols.DeleteClientProtocol;
 import java.io.*;
 import java.net.*;
@@ -61,6 +63,15 @@ public class ClientComm {
     System.out.println(client);
     DeleteClientProtocol dcp = new DeleteClientProtocol(client, out);
     dcp.executeProtocol();
+    closeSocket();
+  }
+
+  public void addNoteComm(int clientID, Note note) {
+    enableSocket();
+    System.out.println(note);
+    AddNoteProtocol anp = new AddNoteProtocol(clientID, note, out, in);
+    anp.executeProtocol();
+    System.out.println(note);
     closeSocket();
   }
 }

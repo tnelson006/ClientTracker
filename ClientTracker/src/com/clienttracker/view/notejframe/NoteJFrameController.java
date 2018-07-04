@@ -1,5 +1,7 @@
 package com.clienttracker.view.notejframe;
 
+import com.clienttracker.main.ClientTracker;
+import com.clienttracker.model.domain.Client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,7 +34,7 @@ public class NoteJFrameController implements ActionListener{
 		if(e.getSource().equals(noteJFrame.getCancelButton())){
       cancel_actionPerformed();
     }
-			
+
 		else if(e.getSource().equals(noteJFrame.getSaveNoteButton())){
 			if(noteJFrame.isNoteNew()) {
         addNote_actionPerformed();
@@ -47,8 +49,12 @@ public class NoteJFrameController implements ActionListener{
 	}
 
 	public void addNote_actionPerformed(){
-		Note note = noteJFrame.getEnteredData();
-    mainJFrameController.addNote(note);
+		Note newNote = noteJFrame.getEnteredData();
+    Client tempClient = (Client)mainJFrameController.getMainJFrame().getClientListValue();
+    int clientID = tempClient.getUniqueID();
+    ClientTracker.clientComm.addNoteComm(clientID, newNote);
+
+    mainJFrameController.addNote(newNote);
     noteJFrame.dispose();
 	}
 
