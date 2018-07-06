@@ -9,6 +9,7 @@ import com.clienttracker.model.domain.Note;
 import com.clienttracker.socket.protocols.AddClientProtocol;
 import com.clienttracker.socket.protocols.AddNoteProtocol;
 import com.clienttracker.socket.protocols.DeleteClientProtocol;
+import com.clienttracker.socket.protocols.EditNoteProtocol;
 import java.io.*;
 import java.net.*;
 
@@ -71,6 +72,15 @@ public class ClientComm {
     System.out.println(note);
     AddNoteProtocol anp = new AddNoteProtocol(clientID, note, out, in);
     anp.executeProtocol();
+    System.out.println(note);
+    closeSocket();
+  }
+
+  public void editNoteComm(int clientID, Note note) {
+    enableSocket();
+    System.out.println(note);
+    EditNoteProtocol enp = new EditNoteProtocol(clientID, note, out);
+    enp.executeProtocol();
     System.out.println(note);
     closeSocket();
   }

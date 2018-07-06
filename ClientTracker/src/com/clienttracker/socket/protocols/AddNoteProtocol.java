@@ -44,7 +44,7 @@ public class AddNoteProtocol {
       System.out.println("Client: " + fromClient);
       out.println(fromClient);
 
-      String pattern = "yyyy-MM-dd HH:mm";
+      String pattern = "yyyy-MM-dd HH:mm:ss";
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
       fromClient = simpleDateFormat.format(note.getDate());
