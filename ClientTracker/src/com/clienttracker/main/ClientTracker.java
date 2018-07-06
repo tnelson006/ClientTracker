@@ -9,7 +9,6 @@ import com.clienttracker.view.mainjframe.MainJFrameController;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.UIManager;
-import org.apache.log4j.Logger;
 
 /**
  * This class contains the client side main function that will create and manage
@@ -26,7 +25,7 @@ public class ClientTracker {
     ArrayList<Client> clients = new ArrayList<>();
     co = new Counselor(2, "Lauren", "Nelson", clients);
 
-    List<Note> notes1 = new ArrayList<>();
+    /*List<Note> notes1 = new ArrayList<>();
     List<Note> notes2 = new ArrayList<>();
     Client cl1 = new Client("Herp", "Derpingson", notes1);
     Client cl2 = new Client("Derp", "Herpingson", notes2);
@@ -42,9 +41,10 @@ public class ClientTracker {
     cl2.addNote(n4);
 
     co.addClient(cl1);
-    co.addClient(cl2);
+    co.addClient(cl2);*/
 
     clientComm = new ClientComm("localhost", 8080);
+    clientComm.initializeClientTrackerComm(co);
 
     MainJFrame mainJFrame = new MainJFrame();
     mainJFrame.setClients(co.getClients());

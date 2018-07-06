@@ -5,12 +5,14 @@ package com.clienttracker.socket.ClientComm;
  * @author T-Nel
  */
 import com.clienttracker.model.domain.Client;
+import com.clienttracker.model.domain.Counselor;
 import com.clienttracker.model.domain.Note;
 import com.clienttracker.socket.protocols.AddClientProtocol;
 import com.clienttracker.socket.protocols.AddNoteProtocol;
 import com.clienttracker.socket.protocols.DeleteClientProtocol;
 import com.clienttracker.socket.protocols.DeleteNoteProtocol;
 import com.clienttracker.socket.protocols.EditNoteProtocol;
+import com.clienttracker.socket.protocols.InitializeClientTrackerProtocol;
 import java.io.*;
 import java.net.*;
 
@@ -49,6 +51,15 @@ public class ClientComm {
     catch (IOException e) {
       System.err.println("Couldn't get I/O for the connection to " + hostName);
     }
+  }
+
+  public void initializeClientTrackerComm(Counselor co) {
+    enableSocket();
+    System.out.println(co);
+    InitializeClientTrackerProtocol ictp = new InitializeClientTrackerProtocol(co, out, in);
+    ictp.executeProtocol();
+    System.out.println(co);
+    closeSocket();
   }
 
   public void addClientComm(Client client) {

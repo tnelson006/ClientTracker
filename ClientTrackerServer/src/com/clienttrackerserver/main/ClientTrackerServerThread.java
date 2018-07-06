@@ -6,6 +6,7 @@ import com.clienttrackerserver.socket.protocols.AddNoteProtocol;
 import com.clienttrackerserver.socket.protocols.DeleteClientProtocol;
 import com.clienttrackerserver.socket.protocols.DeleteNoteProtocol;
 import com.clienttrackerserver.socket.protocols.EditNoteProtocol;
+import com.clienttrackerserver.socket.protocols.InitializeClientTrackerProtocol;
 import java.net.*;
 import java.io.*;
 import java.sql.Connection;
@@ -37,6 +38,10 @@ public class ClientTrackerServerThread extends Thread {
           System.out.println("Server protocol #: " + protocol);
 
           switch (protocol) {
+            case 0:
+              InitializeClientTrackerProtocol ictp = new InitializeClientTrackerProtocol(out, in, conn);
+              ictp.executeProtocol();
+              break;
             case 1:
               AddClientProtocol acp = new AddClientProtocol(out, in, conn);
               acp.executeProtocol();
