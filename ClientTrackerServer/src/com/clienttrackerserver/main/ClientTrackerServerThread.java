@@ -4,6 +4,7 @@ package com.clienttrackerserver.main;
 import com.clienttrackerserver.socket.protocols.AddClientProtocol;
 import com.clienttrackerserver.socket.protocols.AddNoteProtocol;
 import com.clienttrackerserver.socket.protocols.DeleteClientProtocol;
+import com.clienttrackerserver.socket.protocols.DeleteNoteProtocol;
 import com.clienttrackerserver.socket.protocols.EditNoteProtocol;
 import java.net.*;
 import java.io.*;
@@ -51,6 +52,10 @@ public class ClientTrackerServerThread extends Thread {
             case 4:
               EditNoteProtocol enp = new EditNoteProtocol(in, conn);
               enp.executeProtocol();
+              break;
+            case 5:
+              DeleteNoteProtocol dnp = new DeleteNoteProtocol(in, conn);
+              dnp.executeProtocol();
               break;
             default:
               System.out.println(protocol + " is not a supported protocol number.");

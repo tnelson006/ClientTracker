@@ -4,17 +4,13 @@ import com.clienttracker.main.ClientTracker;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//import com.clienttracker.model.business.manager.DAOManager;
 import com.clienttracker.model.domain.Client;
 import com.clienttracker.model.domain.Note;
 import com.clienttracker.view.clientjframe.ClientJFrame;
 import com.clienttracker.view.notejframe.NoteJFrame;
-//import com.diagnosispro.model.services.factory.HibernateSessionFactory;
-//import com.diagnosispro.view.addnotejframe.AddNoteJFrame;
-//import com.diagnosispro.view.createclientjframe.CreateClientJFrame;
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -118,7 +114,8 @@ public class MainJFrameController implements ActionListener{
     System.out.println("deleteNote_actionPerformed");
     System.out.println(mainJFrame.getNoteListIndex());
     if(mainJFrame.getNoteListIndex() != -1) {
-      System.out.println((Note)mainJFrame.getNoteListValue());
+      Note tempNote = (Note)mainJFrame.getNoteListValue();
+      ClientTracker.clientComm.deleteNoteComm(tempNote.getNoteID());
       deleteNote(mainJFrame.getNoteListIndex());
     }
 	}
@@ -137,7 +134,11 @@ public class MainJFrameController implements ActionListener{
   public void deleteClient(Client client) {
     ArrayList<Client> clients = mainJFrame.getClients();
     clients.remove(client);
+
     mainJFrame.setClients(clients);
+    //The client was deleted, so no notes should be shown at this point
+    mainJFrame.setNotes(emptyNotes);
+
     addListeners();
   }
 
