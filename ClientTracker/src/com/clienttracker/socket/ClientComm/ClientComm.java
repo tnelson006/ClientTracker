@@ -13,6 +13,7 @@ import com.clienttracker.socket.protocols.DeleteClientProtocol;
 import com.clienttracker.socket.protocols.DeleteNoteProtocol;
 import com.clienttracker.socket.protocols.EditNoteProtocol;
 import com.clienttracker.socket.protocols.InitializeClientTrackerProtocol;
+import com.clienttracker.socket.protocols.SignInProtocol;
 import java.io.*;
 import java.net.*;
 
@@ -104,5 +105,16 @@ public class ClientComm {
     enp.executeProtocol();
     System.out.println(noteID);
     closeSocket();
+  }
+
+  public int signInComm(String username, String password) {
+    enableSocket();
+    System.out.println("Username: " + username);
+    System.out.println("Password: " + password);
+    SignInProtocol sip = new SignInProtocol(username, password, out, in);
+    int counselorID = sip.executeProtocol();
+    closeSocket();
+
+    return counselorID;
   }
 }

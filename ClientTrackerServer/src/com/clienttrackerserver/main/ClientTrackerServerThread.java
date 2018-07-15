@@ -7,6 +7,7 @@ import com.clienttrackerserver.socket.protocols.DeleteClientProtocol;
 import com.clienttrackerserver.socket.protocols.DeleteNoteProtocol;
 import com.clienttrackerserver.socket.protocols.EditNoteProtocol;
 import com.clienttrackerserver.socket.protocols.InitializeClientTrackerProtocol;
+import com.clienttrackerserver.socket.protocols.SignInProtocol;
 import java.net.*;
 import java.io.*;
 import java.sql.Connection;
@@ -61,6 +62,10 @@ public class ClientTrackerServerThread extends Thread {
             case 5:
               DeleteNoteProtocol dnp = new DeleteNoteProtocol(in, conn);
               dnp.executeProtocol();
+              break;
+            case 6:
+              SignInProtocol sip = new SignInProtocol(out, in, conn);
+              sip.executeProtocol();
               break;
             default:
               System.out.println(protocol + " is not a supported protocol number.");

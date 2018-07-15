@@ -6,6 +6,7 @@ import com.clienttracker.model.domain.Note;
 import com.clienttracker.socket.ClientComm.ClientComm;
 import com.clienttracker.view.mainjframe.MainJFrame;
 import com.clienttracker.view.mainjframe.MainJFrameController;
+import com.clienttracker.view.signinjframe.SignInJFrame;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.UIManager;
@@ -20,30 +21,22 @@ public class ClientTracker {
 
   public static ClientComm clientComm;
   public static Counselor co;
+  private static ArrayList<Client> clients = new ArrayList<>();
 
   public static void main(String[] args) {
-    ArrayList<Client> clients = new ArrayList<>();
-    co = new Counselor(2, "Lauren", "Nelson", clients);
-
-    /*List<Note> notes1 = new ArrayList<>();
-    List<Note> notes2 = new ArrayList<>();
-    Client cl1 = new Client("Herp", "Derpingson", notes1);
-    Client cl2 = new Client("Derp", "Herpingson", notes2);
-
-    Note n1 = new Note("Client exhibited strange behavior, but that is to be expected.");
-    Note n2 = new Note("Client exhibited silly behavior, but that is to be expected.");
-    Note n3 = new Note("Client exhibited odd behavior, but that is to be expected.");
-    Note n4 = new Note("Client exhibited hilarious behavior, but that is to be expected.");
-
-    cl1.addNote(n1);
-    cl1.addNote(n2);
-    cl2.addNote(n3);
-    cl2.addNote(n4);
-
-    co.addClient(cl1);
-    co.addClient(cl2);*/
+    co = new Counselor(-1, "tempFirstName", "tempLastName", clients);
 
     clientComm = new ClientComm("localhost", 8080);
+    SignInJFrame signInJFrame = new SignInJFrame();
+  }
+
+  public static void setCounselorID(int ID) {
+    co.setUniqueID(ID);
+    System.out.println("The unique ID is: " + co.getUniqueID());
+    displayMainWindow();
+  }
+
+  private static void displayMainWindow() {
     clientComm.initializeClientTrackerComm(co);
 
     MainJFrame mainJFrame = new MainJFrame();

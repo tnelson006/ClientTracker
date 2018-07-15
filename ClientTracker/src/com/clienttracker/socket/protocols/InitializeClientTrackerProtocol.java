@@ -41,6 +41,7 @@ public class InitializeClientTrackerProtocol {
     String fromServer;
     try {
       int clientID, noteID;
+      String counselorFirstName, counselorLastName;
       String clientFirstName, clientLastName;
       String text;
       Date date;
@@ -51,6 +52,14 @@ public class InitializeClientTrackerProtocol {
 
       System.out.println("Client: " + co.getUniqueID());
       out.println(co.getUniqueID());
+
+      fromServer = in.readLine(); //First Name
+      System.out.println("Server: " + fromServer);
+      co.setFirstName(fromServer);
+
+      fromServer = in.readLine(); //Last Name
+      System.out.println("Server: " + fromServer);
+      co.setLastName(fromServer);
 
       //Are there any client objects to create?
       fromServer = in.readLine();
