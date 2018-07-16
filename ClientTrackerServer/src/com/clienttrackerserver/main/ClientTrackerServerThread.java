@@ -7,6 +7,7 @@ import com.clienttrackerserver.socket.protocols.DeleteClientProtocol;
 import com.clienttrackerserver.socket.protocols.DeleteNoteProtocol;
 import com.clienttrackerserver.socket.protocols.EditNoteProtocol;
 import com.clienttrackerserver.socket.protocols.InitializeClientTrackerProtocol;
+import com.clienttrackerserver.socket.protocols.NewUserProtocol;
 import com.clienttrackerserver.socket.protocols.SignInProtocol;
 import java.net.*;
 import java.io.*;
@@ -66,6 +67,10 @@ public class ClientTrackerServerThread extends Thread {
             case 6:
               SignInProtocol sip = new SignInProtocol(out, in, conn);
               sip.executeProtocol();
+              break;
+            case 7:
+              NewUserProtocol nup = new NewUserProtocol(out, in, conn);
+              nup.executeProtocol();
               break;
             default:
               System.out.println(protocol + " is not a supported protocol number.");

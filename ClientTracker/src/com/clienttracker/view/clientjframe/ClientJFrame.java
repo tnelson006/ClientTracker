@@ -69,12 +69,12 @@ public class ClientJFrame extends javax.swing.JFrame{
 		jTextFieldLastName.setBounds(150, 75, 200, 25);
 
 		jButtonCancel.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jButtonCancel.setLabel("Cancel");
+		jButtonCancel.setText("Cancel");
 		jPanel.add(jButtonCancel);
 		jButtonCancel.setBounds(25, 125, 150, 50);
 
 		jButtonSubmitClient.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jButtonSubmitClient.setLabel("Add Client"); //This will vary in the future (add/edit)
+		jButtonSubmitClient.setText("Add Client"); //This will vary in the future (add/edit)
     setEnabledSubmitClientButton(false);
 		jPanel.add(jButtonSubmitClient);
 		jButtonSubmitClient.setBounds(225, 125, 150, 50);

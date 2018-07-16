@@ -2,14 +2,12 @@ package com.clienttracker.main;
 
 import com.clienttracker.model.domain.Client;
 import com.clienttracker.model.domain.Counselor;
-import com.clienttracker.model.domain.Note;
 import com.clienttracker.socket.ClientComm.ClientComm;
 import com.clienttracker.view.mainjframe.MainJFrame;
 import com.clienttracker.view.mainjframe.MainJFrameController;
+import com.clienttracker.view.newuserjframe.NewUserJFrame;
 import com.clienttracker.view.signinjframe.SignInJFrame;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.UIManager;
 
 /**
  * This class contains the client side main function that will create and manage
@@ -27,13 +25,21 @@ public class ClientTracker {
     co = new Counselor(-1, "tempFirstName", "tempLastName", clients);
 
     clientComm = new ClientComm("localhost", 8080);
-    SignInJFrame signInJFrame = new SignInJFrame();
+    displaySignIn();
   }
 
   public static void setCounselorID(int ID) {
     co.setUniqueID(ID);
     System.out.println("The unique ID is: " + co.getUniqueID());
     displayMainWindow();
+  }
+
+  public static void displaySignIn() {
+    SignInJFrame signInJFrame = new SignInJFrame();
+  }
+
+  public static void displayNewUser() {
+    NewUserJFrame newUserJFrame = new NewUserJFrame();
   }
 
   private static void displayMainWindow() {

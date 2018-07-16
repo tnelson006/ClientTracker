@@ -68,18 +68,18 @@ public class NoteJFrame extends javax.swing.JFrame{
 		jScrollPaneText.setBounds(25, 50, 400, 250);
 
 		jButtonCancel.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jButtonCancel.setLabel("Cancel");
+		jButtonCancel.setText("Cancel");
 		jPanel.add(jButtonCancel);
 		jButtonCancel.setBounds(25, 350, 150, 50);
 
 		jButtonSaveNote.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
 
     if(note != null) {
-      jButtonSaveNote.setLabel("Edit Note");
+      jButtonSaveNote.setText("Edit Note");
       newNote = false;
     }
     else {
-      jButtonSaveNote.setLabel("Add Note");
+      jButtonSaveNote.setText("Add Note");
       newNote = true;
     }
 

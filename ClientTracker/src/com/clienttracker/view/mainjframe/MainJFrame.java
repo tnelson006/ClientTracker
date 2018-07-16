@@ -79,31 +79,31 @@ public class MainJFrame extends javax.swing.JFrame{
 		jScrollPaneNotes.setBounds(300, 50, 800, 250);
 
 		jButtonAddClient.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jButtonAddClient.setLabel("Add Client");
+		jButtonAddClient.setText("Add Client");
     setEnabledAddClientButton(true);
 		jPanel.add(jButtonAddClient);
 		jButtonAddClient.setBounds(25, 325, 150, 50);
 
     jButtonDeleteClient.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jButtonDeleteClient.setLabel("Delete Client");
+		jButtonDeleteClient.setText("Delete Client");
 		setEnabledDeleteClientButton(false);
     jPanel.add(jButtonDeleteClient);
 		jButtonDeleteClient.setBounds(200, 325, 150, 50);
 
 		jButtonAddNote.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jButtonAddNote.setLabel("Add Note");
+		jButtonAddNote.setText("Add Note");
 		setEnabledAddNoteButton(false);
 		jPanel.add(jButtonAddNote);
 		jButtonAddNote.setBounds(375, 325, 150, 50);
 
     jButtonEditNote.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jButtonEditNote.setLabel("Edit Note");
+		jButtonEditNote.setText("Edit Note");
 		setEnabledEditNoteButton(false);
 		jPanel.add(jButtonEditNote);
 		jButtonEditNote.setBounds(550, 325, 150, 50);
 
     jButtonDeleteNote.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jButtonDeleteNote.setLabel("Delete Note");
+		jButtonDeleteNote.setText("Delete Note");
 		setEnabledDeleteNoteButton(false);
 		jPanel.add(jButtonDeleteNote);
 		jButtonDeleteNote.setBounds(725, 325, 150, 50);

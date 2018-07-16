@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.JFrame;
 
 /**
  * @author Travis Nelson
@@ -22,9 +23,12 @@ public class SignInJFrameController implements ActionListener, KeyListener{
 	public SignInJFrameController(SignInJFrame signInJFrame){
 
 		this.signInJFrame = signInJFrame;
+    signInJFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		signInJFrame.getCancelButton().addActionListener(this);
 		signInJFrame.getSubmitLoginButton().addActionListener(this);
+
+    signInJFrame.getNewUserButton().addActionListener(this);
     signInJFrame.getTextFieldUsername().addKeyListener(this);
     signInJFrame.getTextFieldPassword().addKeyListener(this);
 
@@ -36,6 +40,8 @@ public class SignInJFrameController implements ActionListener, KeyListener{
 			cancel_actionPerformed();
 		else if(e.getSource().equals(signInJFrame.getSubmitLoginButton()))
 			submitLogin_actionPerformed();
+    else if(e.getSource().equals(signInJFrame.getNewUserButton()))
+			newUser_actionPerformed();
 	}
 
   public void keyReleased(KeyEvent e){
@@ -66,6 +72,11 @@ public class SignInJFrameController implements ActionListener, KeyListener{
     ClientTracker.setCounselorID(counselorID);
     signInJFrame.dispose();
 	}
+
+  private void newUser_actionPerformed(){
+    ClientTracker.displayNewUser();
+    signInJFrame.dispose();
+  }
 
   private void textChanged_actionPerformed(javax.swing.JTextField jTextField){
 		if(jTextField.equals(signInJFrame.getTextFieldUsername())){

@@ -1,6 +1,5 @@
 package com.clienttracker.view.signinjframe;
 
-import com.clienttracker.main.ClientTracker;
 import java.awt.Dimension;
 
 import com.clienttracker.model.domain.Client;
@@ -25,8 +24,8 @@ public class SignInJFrame extends javax.swing.JFrame{
 		this.signInJFrameController = new SignInJFrameController(this);
 
 		this.setResizable(true);
-		this.setMinimumSize(new Dimension(450, 225));
-		this.setMaximumSize(new Dimension(450, 225));
+		this.setMinimumSize(new Dimension(475, 225));
+		this.setMaximumSize(new Dimension(475, 225));
 		this.pack();
 		this.setVisible(true);
 	}
@@ -35,11 +34,12 @@ public class SignInJFrame extends javax.swing.JFrame{
 	private void initComponents(){
 		jButtonCancel = new javax.swing.JButton();
 		jButtonSubmitLogin = new javax.swing.JButton();
+    jButtonNewUser = new javax.swing.JButton();
 		jLabelUsername = new javax.swing.JLabel();
 		jLabelPassword = new javax.swing.JLabel();
 		jPanel = new javax.swing.JPanel();
-		jTextFieldFirstName = new javax.swing.JTextField();
-		jTextFieldLastName = new javax.swing.JTextField();
+		jTextFieldUsername = new javax.swing.JTextField();
+		jTextFieldPassword = new javax.swing.JTextField();
 
 		setTitle("Client Tracker - Sign In");
 
@@ -52,52 +52,46 @@ public class SignInJFrame extends javax.swing.JFrame{
 		jPanel.add(jLabelUsername);
 		jLabelUsername.setBounds(50, 25, 100, 25);
 
-		jTextFieldFirstName.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jPanel.add(jTextFieldFirstName);
-		jTextFieldFirstName.setBounds(150, 25, 200, 25);
+		jTextFieldUsername.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
+		jPanel.add(jTextFieldUsername);
+		jTextFieldUsername.setBounds(150, 25, 200, 25);
 
 		jLabelPassword.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
 		jLabelPassword.setText("Password:");
 		jPanel.add(jLabelPassword);
 		jLabelPassword.setBounds(50, 75, 100, 25);
 
-		jTextFieldLastName.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jPanel.add(jTextFieldLastName);
-		jTextFieldLastName.setBounds(150, 75, 200, 25);
+		jTextFieldPassword.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
+		jPanel.add(jTextFieldPassword);
+		jTextFieldPassword.setBounds(150, 75, 200, 25);
 
 		jButtonCancel.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jButtonCancel.setLabel("Cancel");
+		jButtonCancel.setText("Cancel");
 		jPanel.add(jButtonCancel);
-		jButtonCancel.setBounds(25, 125, 150, 50);
+		jButtonCancel.setBounds(25, 125, 125, 50);
 
 		jButtonSubmitLogin.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jButtonSubmitLogin.setLabel("Sign In");
+		jButtonSubmitLogin.setText("Sign In");
     setEnabledSubmitLoginButton(false);
 		jPanel.add(jButtonSubmitLogin);
-		jButtonSubmitLogin.setBounds(225, 125, 150, 50);
+		jButtonSubmitLogin.setBounds(175, 125, 125, 50);
+
+    jButtonNewUser.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
+		jButtonNewUser.setText("New User");
+		jPanel.add(jButtonNewUser);
+		jButtonNewUser.setBounds(325, 125, 125, 50);
 
 		getContentPane().add(jPanel);
 
 		pack();
 	}
 
-	public Client getEnteredData(){
-
-		notes = new ArrayList<>();
-
-		Client client = new Client(-1,
-                  jTextFieldFirstName.getText(),
-									jTextFieldLastName.getText(),
-                  notes);
-		return client;
-	}
-
   public javax.swing.JTextField getTextFieldUsername(){
-		return jTextFieldFirstName;
+		return jTextFieldUsername;
 	}
 
   public javax.swing.JTextField getTextFieldPassword(){
-		return jTextFieldLastName;
+		return jTextFieldPassword;
 	}
 
 	public javax.swing.JButton getCancelButton(){
@@ -108,6 +102,10 @@ public class SignInJFrame extends javax.swing.JFrame{
 		return jButtonSubmitLogin;
 	}
 
+  public javax.swing.JButton getNewUserButton(){
+		return jButtonNewUser;
+	}
+
   public void setEnabledSubmitLoginButton(boolean enabled){
 		jButtonSubmitLogin.setEnabled(enabled);
 	}
@@ -115,9 +113,10 @@ public class SignInJFrame extends javax.swing.JFrame{
 	private ArrayList<Note> notes;
   private javax.swing.JButton jButtonCancel;
 	private javax.swing.JButton jButtonSubmitLogin;
+  private javax.swing.JButton jButtonNewUser;
 	private javax.swing.JLabel jLabelUsername;
 	private javax.swing.JLabel jLabelPassword;
 	private javax.swing.JPanel jPanel;
-	private javax.swing.JTextField jTextFieldFirstName;
-	private javax.swing.JTextField jTextFieldLastName;
+	private javax.swing.JTextField jTextFieldUsername;
+	private javax.swing.JTextField jTextFieldPassword;
 }
