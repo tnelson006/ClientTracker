@@ -1,6 +1,7 @@
 package com.clienttracker.view.newuserjframe;
 
 import com.clienttracker.main.ClientTracker;
+import com.clienttracker.security.Hasher;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -85,9 +86,11 @@ public class NewUserJFrameController implements ActionListener, KeyListener{
     //If the passwords are unequal, give up and hope they do it right next time
     if(!password.equals(confirmPassword)) return;
 
+    Hasher hasher = Hasher.getHasher();
+
     String firstName = newUserJFrame.getTextFieldFirstName().getText();
     String lastName = newUserJFrame.getTextFieldLastName().getText();
-    int counselorID = ClientTracker.clientComm.newUserComm(username, password,
+    int counselorID = ClientTracker.clientComm.newUserComm(username, hasher.hashPassword(password),
                                                            firstName, lastName);
     ClientTracker.setCounselorID(counselorID);
     newUserJFrame.dispose();

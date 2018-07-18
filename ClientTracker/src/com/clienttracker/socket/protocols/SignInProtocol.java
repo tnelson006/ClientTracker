@@ -5,8 +5,6 @@
  */
 package com.clienttracker.socket.protocols;
 
-import com.clienttracker.main.ClientTracker;
-import com.clienttracker.model.domain.Client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,6 +1,7 @@
 package com.clienttracker.view.signinjframe;
 
 import com.clienttracker.main.ClientTracker;
+import com.clienttracker.security.Hasher;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -68,7 +69,9 @@ public class SignInJFrameController implements ActionListener, KeyListener{
 
     String username = signInJFrame.getTextFieldUsername().getText();
     String password = signInJFrame.getTextFieldPassword().getText();
-    int counselorID = ClientTracker.clientComm.signInComm(username, password);
+    Hasher hasher = Hasher.getHasher();
+
+    int counselorID = ClientTracker.clientComm.signInComm(username, hasher.hashPassword(password));
     ClientTracker.setCounselorID(counselorID);
     signInJFrame.dispose();
 	}
