@@ -7,6 +7,7 @@ package com.clienttracker.socket.ClientComm;
 import com.clienttracker.model.domain.Client;
 import com.clienttracker.model.domain.Counselor;
 import com.clienttracker.model.domain.Note;
+import com.clienttracker.security.Crypter;
 import com.clienttracker.socket.protocols.AddClientProtocol;
 import com.clienttracker.socket.protocols.AddNoteProtocol;
 import com.clienttracker.socket.protocols.DeleteClientProtocol;
@@ -24,12 +25,20 @@ public class ClientComm {
   PrintWriter out;
   BufferedReader in;
 
+  Crypter crypter = null;
+
   String hostName;
   int portNumber;
 
   public ClientComm(String hostName, int portNumber) {
     this.hostName = hostName;
     this.portNumber = portNumber;
+  }
+
+  public void enableCrypter(String password) {
+    if (null == crypter) {
+      crypter = new Crypter(password);
+    }
   }
 
   private void enableSocket() {
@@ -88,6 +97,9 @@ public class ClientComm {
     anp.executeProtocol();
     System.out.println(note);
     closeSocket();
+    String encrypted = crypter.encrypt(note.getText());
+    System.out.println("E: " + encrypted);
+    System.out.println("D: " + crypter.decrypt(encrypted));
   }
 
   public void editNoteComm(int noteID, Note note) {
