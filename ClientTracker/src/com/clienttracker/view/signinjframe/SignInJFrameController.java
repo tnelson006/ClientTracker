@@ -71,7 +71,7 @@ public class SignInJFrameController implements ActionListener, KeyListener{
     String password = signInJFrame.getTextFieldPassword().getText();
     Hasher hasher = Hasher.getHasher();
 
-    int counselorID = ClientTracker.clientComm.signInComm(username, hasher.hashPassword(password));
+    int counselorID = ClientTracker.clientComm.signInComm(username, hasher.hashPasswordSHA512(password));
     ClientTracker.setCounselorID(counselorID);
     signInJFrame.dispose();
 	}

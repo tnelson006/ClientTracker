@@ -24,10 +24,10 @@ public class Hasher {
   }
   private Hasher() {}
 
-  public String hashPassword(String password) {
+  public String hashPasswordSHA512(String password) {
     String hashedPassword = "";
     try {
-      MessageDigest md = MessageDigest.getInstance("MD5");
+      MessageDigest md = MessageDigest.getInstance("SHA-512");
       md.update(password.getBytes());
       hashedPassword = DatatypeConverter.printHexBinary(md.digest());
       System.out.println(hashedPassword);
