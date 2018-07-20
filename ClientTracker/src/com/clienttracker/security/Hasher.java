@@ -37,19 +37,6 @@ public class Hasher {
     return hashedPassword;
   }
 
-  public byte [] hashPasswordSHA384(String password) {
-    byte [] hashedPassword = new byte[0];
-    try {
-      MessageDigest md = MessageDigest.getInstance("SHA-384");
-      md.update(password.getBytes());
-      hashedPassword = md.digest();
-      System.out.println(hashedPassword);
-    } catch(NoSuchAlgorithmException e) {
-      e.printStackTrace();
-    }
-    return hashedPassword;
-  }
-
   public byte [] hashPasswordSHA256(String password) {
     byte [] hashedPassword = new byte[0];
     try {
