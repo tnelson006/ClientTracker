@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.clienttracker.socket.protocols;
 
-import com.clienttracker.main.ClientTracker;
 import com.clienttracker.model.domain.Client;
-import java.io.BufferedReader;
-import java.io.IOException;
+
 import java.io.PrintWriter;
-import java.net.UnknownHostException;
 
 /**
  *
@@ -33,10 +26,6 @@ public class DeleteClientProtocol {
 
       fromClient = Integer.toString(DELETECLIENTPROTOCOL);
       System.out.println("Client (protocol): " + fromClient);
-      out.println(fromClient);
-
-      fromClient = Integer.toString(ClientTracker.co.getUniqueID());
-      System.out.println("Client (counselor ID): " + fromClient);
       out.println(fromClient);
 
       fromClient = client.getUniqueID().toString();

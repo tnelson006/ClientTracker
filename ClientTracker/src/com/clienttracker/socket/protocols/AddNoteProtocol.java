@@ -1,6 +1,7 @@
 package com.clienttracker.socket.protocols;
 
 import com.clienttracker.model.domain.Note;
+import com.clienttracker.security.Crypter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,13 +18,15 @@ public class AddNoteProtocol {
 
   int clientID;
   Note note;
+  Crypter crypter;
   PrintWriter out;
   BufferedReader in;
 
-  public AddNoteProtocol(int clientID, Note note,
+  public AddNoteProtocol(int clientID, Note note, Crypter crypter,
                          PrintWriter out, BufferedReader in) {
     this.clientID = clientID;
     this.note = note;
+    this.crypter = crypter;
     this.out = out;
     this.in = in;
   }
@@ -42,14 +45,14 @@ public class AddNoteProtocol {
 
       fromClient = note.getText();
       System.out.println("Client: " + fromClient);
-      out.println(fromClient);
+      out.println(crypter.encrypt(fromClient));
 
       String pattern = "yyyy-MM-dd HH:mm:ss";
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
       fromClient = simpleDateFormat.format(note.getDate());
       System.out.println("Client: " + fromClient);
-      out.println(fromClient);
+      out.println(crypter.encrypt(fromClient));
 
       if((fromServer = in.readLine()) != null){
           System.out.println("Server: " + fromServer);

@@ -5,6 +5,7 @@
  */
 package com.clienttracker.socket.protocols;
 
+import com.clienttracker.security.Crypter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,16 +25,19 @@ public class NewUserProtocol {
   private final String lastName;
   PrintWriter out;
   BufferedReader in;
+  Crypter crypter;
 
   public NewUserProtocol(String username, String hashedPassword,
                          String firstName, String lastName,
-                         PrintWriter out, BufferedReader in) {
+                         PrintWriter out, BufferedReader in,
+                         Crypter crypter) {
     this.username = username;
     this.hashedPassword = hashedPassword;
     this.firstName = firstName;
     this.lastName = lastName;
     this.out = out;
     this.in = in;
+    this.crypter = crypter;
   }
 
   public int executeProtocol() {
@@ -51,10 +55,10 @@ public class NewUserProtocol {
       out.println(hashedPassword);
 
       System.out.println("Client: " + firstName);
-      out.println(firstName);
+      out.println(crypter.encrypt(firstName));
 
       System.out.println("Client: " + lastName);
-      out.println(lastName);
+      out.println(crypter.encrypt(lastName));
 
       fromServer = in.readLine();
       System.out.println("Server: " + fromServer);

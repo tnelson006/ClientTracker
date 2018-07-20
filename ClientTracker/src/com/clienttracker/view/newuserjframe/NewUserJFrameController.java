@@ -90,6 +90,8 @@ public class NewUserJFrameController implements ActionListener, KeyListener{
 
     String firstName = newUserJFrame.getTextFieldFirstName().getText();
     String lastName = newUserJFrame.getTextFieldLastName().getText();
+
+    ClientTracker.clientComm.enableCrypter(password);
     int counselorID = ClientTracker.clientComm.newUserComm(username, hasher.hashPasswordSHA512(password),
                                                            firstName, lastName);
     ClientTracker.setCounselorID(counselorID);

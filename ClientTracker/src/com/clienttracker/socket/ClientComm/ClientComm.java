@@ -67,7 +67,7 @@ public class ClientComm {
   public void initializeClientTrackerComm(Counselor co) {
     enableSocket();
     System.out.println(co);
-    InitializeClientTrackerProtocol ictp = new InitializeClientTrackerProtocol(co, out, in);
+    InitializeClientTrackerProtocol ictp = new InitializeClientTrackerProtocol(co, crypter, out, in);
     ictp.executeProtocol();
     System.out.println(co);
     closeSocket();
@@ -76,7 +76,7 @@ public class ClientComm {
   public void addClientComm(Client client) {
     enableSocket();
     System.out.println(client);
-    AddClientProtocol acp = new AddClientProtocol(client, out, in);
+    AddClientProtocol acp = new AddClientProtocol(client, crypter, out, in);
     acp.executeProtocol();
     System.out.println(client);
     closeSocket();
@@ -93,19 +93,15 @@ public class ClientComm {
   public void addNoteComm(int clientID, Note note) {
     enableSocket();
     System.out.println(note);
-    AddNoteProtocol anp = new AddNoteProtocol(clientID, note, out, in);
+    AddNoteProtocol anp = new AddNoteProtocol(clientID, note, crypter, out, in);
     anp.executeProtocol();
-    System.out.println(note);
     closeSocket();
-    String encrypted = crypter.encrypt(note.getText());
-    System.out.println("E: " + encrypted);
-    System.out.println("D: " + crypter.decrypt(encrypted));
   }
 
   public void editNoteComm(int noteID, Note note) {
     enableSocket();
     System.out.println(note);
-    EditNoteProtocol enp = new EditNoteProtocol(noteID, note, out);
+    EditNoteProtocol enp = new EditNoteProtocol(noteID, note, crypter, out);
     enp.executeProtocol();
     System.out.println(note);
     closeSocket();
@@ -139,7 +135,7 @@ public class ClientComm {
     System.out.println("firstName: " + firstName);
     System.out.println("lastName: " + lastName);
     NewUserProtocol nup = new NewUserProtocol(username, password, firstName,
-                                              lastName, out, in);
+                                              lastName, out, in, crypter);
     int counselorID = nup.executeProtocol();
     closeSocket();
 

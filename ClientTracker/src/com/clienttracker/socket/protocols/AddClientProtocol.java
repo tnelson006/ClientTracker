@@ -7,6 +7,7 @@ package com.clienttracker.socket.protocols;
 
 import com.clienttracker.main.ClientTracker;
 import com.clienttracker.model.domain.Client;
+import com.clienttracker.security.Crypter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,11 +22,14 @@ public class AddClientProtocol {
   private static final int ADDCLIENTPROTOCOL = 1;
 
   Client client;
+  Crypter crypter;
   PrintWriter out;
   BufferedReader in;
 
-  public AddClientProtocol(Client client, PrintWriter out, BufferedReader in) {
+  public AddClientProtocol(Client client, Crypter crypter,
+                           PrintWriter out, BufferedReader in) {
     this.client = client;
+    this.crypter = crypter;
     this.out = out;
     this.in = in;
   }
@@ -44,11 +48,11 @@ public class AddClientProtocol {
 
       fromClient = client.getFirstName();
       System.out.println("Client: " + fromClient);
-      out.println(fromClient);
+      out.println(crypter.encrypt(fromClient));
 
       fromClient = client.getLastName();
       System.out.println("Client: " + fromClient);
-      out.println(fromClient);
+      out.println(crypter.encrypt(fromClient));
 
       if((fromServer = in.readLine()) != null){
           System.out.println("Server: " + fromServer);

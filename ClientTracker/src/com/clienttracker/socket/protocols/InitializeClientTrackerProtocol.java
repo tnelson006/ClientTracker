@@ -8,6 +8,7 @@ package com.clienttracker.socket.protocols;
 import com.clienttracker.model.domain.Client;
 import com.clienttracker.model.domain.Counselor;
 import com.clienttracker.model.domain.Note;
+import com.clienttracker.security.Crypter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,11 +28,14 @@ public class InitializeClientTrackerProtocol {
   private static final int INITIALIZECLIENTTRACKERPROTOCOL = 0;
 
   Counselor co;
+  Crypter crypter;
   PrintWriter out;
   BufferedReader in;
 
-  public InitializeClientTrackerProtocol(Counselor co, PrintWriter out, BufferedReader in) {
+  public InitializeClientTrackerProtocol(Counselor co, Crypter crypter,
+                                         PrintWriter out, BufferedReader in) {
     this.co = co;
+    this.crypter = crypter;
     this.out = out;
     this.in = in;
   }
@@ -41,7 +45,6 @@ public class InitializeClientTrackerProtocol {
     String fromServer;
     try {
       int clientID, noteID;
-      String counselorFirstName, counselorLastName;
       String clientFirstName, clientLastName;
       String text;
       Date date;
@@ -55,11 +58,11 @@ public class InitializeClientTrackerProtocol {
 
       fromServer = in.readLine(); //First Name
       System.out.println("Server: " + fromServer);
-      co.setFirstName(fromServer);
+      co.setFirstName(crypter.decrypt(fromServer));
 
       fromServer = in.readLine(); //Last Name
       System.out.println("Server: " + fromServer);
-      co.setLastName(fromServer);
+      co.setLastName(crypter.decrypt(fromServer));
 
       //Are there any client objects to create?
       fromServer = in.readLine();
@@ -72,11 +75,11 @@ public class InitializeClientTrackerProtocol {
 
         fromServer = in.readLine();
         System.out.println("Server: " + fromServer);
-        clientFirstName = fromServer;
+        clientFirstName = crypter.decrypt(fromServer);
 
         fromServer = in.readLine();
         System.out.println("Server: " + fromServer);
-        clientLastName = fromServer;
+        clientLastName = crypter.decrypt(fromServer);
 
         List<Note> notes = new ArrayList<>();
 
@@ -91,14 +94,14 @@ public class InitializeClientTrackerProtocol {
 
           fromServer = in.readLine();
           System.out.println("Server: " + fromServer);
-          text = fromServer;
+          text = crypter.decrypt(fromServer);
 
           fromServer = in.readLine();
           System.out.println("Server: " + fromServer);
 
           String pattern = "yyyy-MM-dd HH:mm:ss";
           SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-          date = simpleDateFormat.parse(fromServer);
+          date = simpleDateFormat.parse(crypter.decrypt(fromServer));
 
           Note tempNote = new Note(text, date);
           tempNote.setNoteID(noteID);

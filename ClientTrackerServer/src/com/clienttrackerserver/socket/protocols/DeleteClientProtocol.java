@@ -21,7 +21,7 @@ public class DeleteClientProtocol {
 
   BufferedReader in;
   Connection conn;
-  String query = "delete from Clients where counselorID = %s and clientID = %s";
+  String query = "delete from Clients where clientID = %s";
 
   public DeleteClientProtocol(BufferedReader in, Connection conn) {
     System.out.println("Instantiating DeleteClientProtocol");
