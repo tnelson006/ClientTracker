@@ -34,8 +34,8 @@ public class NewUserJFrameController implements ActionListener, KeyListener{
     newUserJFrame.getSignInButton().addActionListener(this);
 
     newUserJFrame.getTextFieldUsername().addKeyListener(this);
-    newUserJFrame.getTextFieldPassword().addKeyListener(this);
-    newUserJFrame.getTextFieldConfirmPassword().addKeyListener(this);
+    newUserJFrame.getPasswordField().addKeyListener(this);
+    newUserJFrame.getPasswordConfirmField().addKeyListener(this);
     newUserJFrame.getTextFieldFirstName().addKeyListener(this);
     newUserJFrame.getTextFieldLastName().addKeyListener(this);
 
@@ -54,10 +54,10 @@ public class NewUserJFrameController implements ActionListener, KeyListener{
   public void keyReleased(KeyEvent e){
     if (e.getSource().equals(newUserJFrame.getTextFieldUsername()))
       textChanged_actionPerformed(newUserJFrame.getTextFieldUsername());
-    else if (e.getSource().equals(newUserJFrame.getTextFieldPassword()))
-      textChanged_actionPerformed(newUserJFrame.getTextFieldPassword());
-    else if (e.getSource().equals(newUserJFrame.getTextFieldConfirmPassword()))
-      textChanged_actionPerformed(newUserJFrame.getTextFieldConfirmPassword());
+    else if (e.getSource().equals(newUserJFrame.getPasswordField()))
+      textChanged_actionPerformed(newUserJFrame.getPasswordField());
+    else if (e.getSource().equals(newUserJFrame.getPasswordConfirmField()))
+      textChanged_actionPerformed(newUserJFrame.getPasswordConfirmField());
     else if (e.getSource().equals(newUserJFrame.getTextFieldFirstName()))
       textChanged_actionPerformed(newUserJFrame.getTextFieldFirstName());
     else if (e.getSource().equals(newUserJFrame.getTextFieldLastName()))
@@ -80,8 +80,8 @@ public class NewUserJFrameController implements ActionListener, KeyListener{
 	private void submitUser_actionPerformed(){
 
     String username = newUserJFrame.getTextFieldUsername().getText();
-    String password = newUserJFrame.getTextFieldPassword().getText();
-    String confirmPassword = newUserJFrame.getTextFieldConfirmPassword().getText();
+    String password = newUserJFrame.getPasswordField().getText();
+    String confirmPassword = newUserJFrame.getPasswordConfirmField().getText();
 
     //If the passwords are unequal, give up and hope they do it right next time
     if(!password.equals(confirmPassword)) return;
@@ -107,10 +107,10 @@ public class NewUserJFrameController implements ActionListener, KeyListener{
 		if(jTextField.equals(newUserJFrame.getTextFieldUsername())){
       usernameEmpty = jTextField.getText().isEmpty();
     }
-    else if(jTextField.equals(newUserJFrame.getTextFieldPassword())){
+    else if(jTextField.equals(newUserJFrame.getPasswordField())){
       passwordEmpty = jTextField.getText().isEmpty();
     }
-    else if(jTextField.equals(newUserJFrame.getTextFieldConfirmPassword())){
+    else if(jTextField.equals(newUserJFrame.getPasswordConfirmField())){
       confirmPasswordEmpty = jTextField.getText().isEmpty();
     }
     else if(jTextField.equals(newUserJFrame.getTextFieldFirstName())){

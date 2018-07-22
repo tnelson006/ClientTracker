@@ -31,7 +31,7 @@ public class SignInJFrameController implements ActionListener, KeyListener{
 
     signInJFrame.getNewUserButton().addActionListener(this);
     signInJFrame.getTextFieldUsername().addKeyListener(this);
-    signInJFrame.getTextFieldPassword().addKeyListener(this);
+    signInJFrame.getPasswordField().addKeyListener(this);
 
 		signInJFrame.setVisible(true);
 	}
@@ -48,8 +48,8 @@ public class SignInJFrameController implements ActionListener, KeyListener{
   public void keyReleased(KeyEvent e){
     if (e.getSource().equals(signInJFrame.getTextFieldUsername()))
       textChanged_actionPerformed(signInJFrame.getTextFieldUsername());
-    else if (e.getSource().equals(signInJFrame.getTextFieldPassword()))
-      textChanged_actionPerformed(signInJFrame.getTextFieldPassword());
+    else if (e.getSource().equals(signInJFrame.getPasswordField()))
+      textChanged_actionPerformed(signInJFrame.getPasswordField());
   }
 
   //Unused, but must be overridden
@@ -68,7 +68,7 @@ public class SignInJFrameController implements ActionListener, KeyListener{
 	private void submitLogin_actionPerformed(){
 
     String username = signInJFrame.getTextFieldUsername().getText();
-    String password = signInJFrame.getTextFieldPassword().getText();
+    String password = signInJFrame.getPasswordField().getText();
     Hasher hasher = Hasher.getHasher();
 
     ClientTracker.clientComm.enableCrypter(password);
@@ -86,7 +86,7 @@ public class SignInJFrameController implements ActionListener, KeyListener{
 		if(jTextField.equals(signInJFrame.getTextFieldUsername())){
       usernameEmpty = jTextField.getText().isEmpty();
     }
-    else if(jTextField.equals(signInJFrame.getTextFieldPassword())){
+    else if(jTextField.equals(signInJFrame.getPasswordField())){
       passwordEmpty = jTextField.getText().isEmpty();
     }
 

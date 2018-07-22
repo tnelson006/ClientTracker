@@ -2,7 +2,6 @@ package com.clienttracker.view.signinjframe;
 
 import java.awt.Dimension;
 
-import com.clienttracker.model.domain.Client;
 import com.clienttracker.model.domain.Note;
 import java.util.ArrayList;
 
@@ -39,7 +38,7 @@ public class SignInJFrame extends javax.swing.JFrame{
 		jLabelPassword = new javax.swing.JLabel();
 		jPanel = new javax.swing.JPanel();
 		jTextFieldUsername = new javax.swing.JTextField();
-		jTextFieldPassword = new javax.swing.JTextField();
+		jPasswordField = new javax.swing.JPasswordField();
 
 		setTitle("Client Tracker - Sign In");
 
@@ -61,9 +60,10 @@ public class SignInJFrame extends javax.swing.JFrame{
 		jPanel.add(jLabelPassword);
 		jLabelPassword.setBounds(50, 75, 100, 25);
 
-		jTextFieldPassword.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jPanel.add(jTextFieldPassword);
-		jTextFieldPassword.setBounds(150, 75, 200, 25);
+		jPasswordField.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
+    jPasswordField.setEchoChar('*');
+		jPanel.add(jPasswordField);
+		jPasswordField.setBounds(150, 75, 200, 25);
 
 		jButtonCancel.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
 		jButtonCancel.setText("Cancel");
@@ -90,8 +90,8 @@ public class SignInJFrame extends javax.swing.JFrame{
 		return jTextFieldUsername;
 	}
 
-  public javax.swing.JTextField getTextFieldPassword(){
-		return jTextFieldPassword;
+  public javax.swing.JTextField getPasswordField(){
+		return jPasswordField;
 	}
 
 	public javax.swing.JButton getCancelButton(){
@@ -118,5 +118,5 @@ public class SignInJFrame extends javax.swing.JFrame{
 	private javax.swing.JLabel jLabelPassword;
 	private javax.swing.JPanel jPanel;
 	private javax.swing.JTextField jTextFieldUsername;
-	private javax.swing.JTextField jTextFieldPassword;
+	private javax.swing.JPasswordField jPasswordField;
 }

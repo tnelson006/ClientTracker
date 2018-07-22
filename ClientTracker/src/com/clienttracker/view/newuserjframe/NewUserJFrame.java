@@ -2,7 +2,6 @@ package com.clienttracker.view.newuserjframe;
 
 import java.awt.Dimension;
 
-import com.clienttracker.model.domain.Client;
 import com.clienttracker.model.domain.Note;
 import java.util.ArrayList;
 
@@ -42,8 +41,8 @@ public class NewUserJFrame extends javax.swing.JFrame{
 		jLabelLastName = new javax.swing.JLabel();
 		jPanel = new javax.swing.JPanel();
 		jTextFieldUsername = new javax.swing.JTextField();
-		jTextFieldPassword = new javax.swing.JTextField();
-    jTextFieldConfirmPassword = new javax.swing.JTextField();
+		jPasswordField = new javax.swing.JPasswordField();
+    jPasswordConfirmField = new javax.swing.JPasswordField();
 		jTextFieldFirstName = new javax.swing.JTextField();
     jTextFieldLastName = new javax.swing.JTextField();
 
@@ -67,18 +66,20 @@ public class NewUserJFrame extends javax.swing.JFrame{
 		jPanel.add(jLabelPassword);
 		jLabelPassword.setBounds(50, 75, 100, 25);
 
-		jTextFieldPassword.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jPanel.add(jTextFieldPassword);
-		jTextFieldPassword.setBounds(150, 75, 200, 25);
+		jPasswordField.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
+    jPasswordField.setEchoChar('*');
+		jPanel.add(jPasswordField);
+		jPasswordField.setBounds(150, 75, 200, 25);
 
     jLabelConfirmPassword.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
 		jLabelConfirmPassword.setText("Confirm Password:");
 		jPanel.add(jLabelConfirmPassword);
 		jLabelConfirmPassword.setBounds(50, 125, 100, 25);
 
-		jTextFieldConfirmPassword.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
-		jPanel.add(jTextFieldConfirmPassword);
-		jTextFieldConfirmPassword.setBounds(150, 125, 200, 25);
+		jPasswordConfirmField.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
+    jPasswordConfirmField.setEchoChar('*');
+		jPanel.add(jPasswordConfirmField);
+		jPasswordConfirmField.setBounds(150, 125, 200, 25);
 
     jLabelFirstName.setFont(new java.awt.Font("Comic Sans MS", 1, 11));
 		jLabelFirstName.setText("First Name:");
@@ -123,12 +124,12 @@ public class NewUserJFrame extends javax.swing.JFrame{
 		return jTextFieldUsername;
 	}
 
-  public javax.swing.JTextField getTextFieldPassword(){
-		return jTextFieldPassword;
+  public javax.swing.JTextField getPasswordField(){
+		return jPasswordField;
 	}
 
-  public javax.swing.JTextField getTextFieldConfirmPassword(){
-		return jTextFieldConfirmPassword;
+  public javax.swing.JTextField getPasswordConfirmField(){
+		return jPasswordConfirmField;
 	}
 
   public javax.swing.JTextField getTextFieldFirstName(){
@@ -166,8 +167,8 @@ public class NewUserJFrame extends javax.swing.JFrame{
   private javax.swing.JLabel jLabelLastName;
 	private javax.swing.JPanel jPanel;
 	private javax.swing.JTextField jTextFieldUsername;
-	private javax.swing.JTextField jTextFieldPassword;
-  private javax.swing.JTextField jTextFieldConfirmPassword;
+	private javax.swing.JPasswordField jPasswordField;
+  private javax.swing.JPasswordField jPasswordConfirmField;
   private javax.swing.JTextField jTextFieldFirstName;
 	private javax.swing.JTextField jTextFieldLastName;
 }
