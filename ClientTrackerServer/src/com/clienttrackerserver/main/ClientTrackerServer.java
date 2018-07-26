@@ -22,8 +22,11 @@ public class ClientTrackerServer {
 
       try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        conn=DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/ClientTrackerServer?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=MST","root","purdue77"); 
+        //conn=DriverManager.getConnection(
+        //        "jdbc:mysql://75.70.198.221/32:3306/ClientTrackerServer?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=MST","tnelson006","purdue77"); 
+
+        conn = DriverManager.
+                getConnection("jdbc:mysql://clienttrackerdatabase.cmwupebesy8c.us-east-2.rds.amazonaws.com:3306/ClientTrackerServer", "tnelson006", "Regis1234567890StrongPassword");
 
         while (listening) {
           new ClientTrackerServerThread(serverSocket.accept(), conn).start();

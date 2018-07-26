@@ -19,7 +19,7 @@ public class SignInProtocol {
   PrintWriter out;
   BufferedReader in;
   Connection conn;
-  String query = "select hashedPassword, counselorID from users where username = '%s'";
+  String query = "select hashedPassword, counselorID from Users where username = '%s'";
 
   public SignInProtocol(PrintWriter out, BufferedReader in, Connection conn) {
     System.out.println("Instantiating SignInProtocol");
