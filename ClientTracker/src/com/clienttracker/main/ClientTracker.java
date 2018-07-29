@@ -24,7 +24,7 @@ public class ClientTracker {
   public static void main(String[] args) {
     co = new Counselor(-1, "tempFirstName", "tempLastName", clients);
 
-    clientComm = new ClientComm("localhost", 8080);
+    clientComm = new ClientComm("ec2-18-191-1-21.us-east-2.compute.amazonaws.com", 8080);
     displaySignIn();
   }
 
