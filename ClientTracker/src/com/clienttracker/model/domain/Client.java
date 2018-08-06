@@ -21,14 +21,6 @@ public class Client implements Serializable{
 	private List<Note> notes = new ArrayList<>();
 
 	/**
-	 * Empty constructor
-	 * No parameters
-	 *
-	public Client(){
-	this.notes = new List<Note>();
-	}*/
-
-	/**
 	 * Constructor
 	 * All parameters
 	 */
