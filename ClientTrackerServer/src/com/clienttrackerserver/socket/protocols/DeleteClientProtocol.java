@@ -7,11 +7,10 @@ package com.clienttrackerserver.socket.protocols;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.UnknownHostException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -21,7 +20,7 @@ public class DeleteClientProtocol {
 
   BufferedReader in;
   Connection conn;
-  String query = "delete from Clients where clientID = %s";
+  PreparedStatement query;
 
   public DeleteClientProtocol(BufferedReader in, Connection conn) {
     System.out.println("Instantiating DeleteClientProtocol");
@@ -30,15 +29,14 @@ public class DeleteClientProtocol {
   }
 
   public void executeProtocol() {
-    String counselorID, clientID;
+    String clientID;
     try {
-      counselorID = in.readLine();
-      System.out.println(counselorID);
       clientID = in.readLine();
       System.out.println(clientID);
 
-      Statement stmt = conn.createStatement();
-      stmt.execute(String.format(query, counselorID, clientID));
+      this.query = this.conn.prepareStatement("delete from Clients where clientID = ?");
+      query.setString(1, clientID);
+      query.execute();
 
     } catch (UnknownHostException e) {
         System.err.println("Don't know about host.");

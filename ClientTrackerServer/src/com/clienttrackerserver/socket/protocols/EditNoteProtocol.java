@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -15,7 +15,7 @@ public class EditNoteProtocol {
 
   BufferedReader in;
   Connection conn;
-  String query = "UPDATE Notes SET text = '%s', date = '%s' WHERE noteID = %s";
+  PreparedStatement query;
 
   public EditNoteProtocol(BufferedReader in, Connection conn) {
     System.out.println("Instantiating EditNoteProtocol");
@@ -33,8 +33,11 @@ public class EditNoteProtocol {
       date = in.readLine();
       System.out.println(date);
 
-      Statement stmt = conn.createStatement();
-      stmt.execute(String.format(query, text, date, noteID));
+      this.query = this.conn.prepareStatement("UPDATE Notes SET text = ?, date = ? WHERE noteID = ?");
+      query.setString(1, text);
+      query.setString(2, date);
+      query.setString(3, noteID);
+      query.execute();
 
     } catch (UnknownHostException e) {
         System.err.println("Don't know about host.");

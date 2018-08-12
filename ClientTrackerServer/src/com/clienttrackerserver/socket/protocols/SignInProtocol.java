@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.UnknownHostException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -19,7 +19,8 @@ public class SignInProtocol {
   PrintWriter out;
   BufferedReader in;
   Connection conn;
-  String query = "select hashedPassword, counselorID from Users where username = '%s'";
+  PreparedStatement query;
+  //String query = ;
 
   public SignInProtocol(PrintWriter out, BufferedReader in, Connection conn) {
     System.out.println("Instantiating SignInProtocol");
@@ -36,8 +37,9 @@ public class SignInProtocol {
       hashedPassword = in.readLine();
       System.out.println(hashedPassword);
 
-      Statement stmt = conn.createStatement();
-      ResultSet rs = stmt.executeQuery(String.format(query, username));
+      this.query = this.conn.prepareStatement("select hashedPassword, counselorID from Users where username = ?");
+      query.setString(1, username);
+      ResultSet rs = query.executeQuery();
 
       //Was something returned from the query?
       if (rs.next()) {

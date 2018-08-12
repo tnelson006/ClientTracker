@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -15,7 +15,7 @@ public class DeleteNoteProtocol {
 
   BufferedReader in;
   Connection conn;
-  String query = "DELETE from Notes WHERE noteID = %s";
+  PreparedStatement query;
 
   public DeleteNoteProtocol(BufferedReader in, Connection conn) {
     System.out.println("Instantiating EditNoteProtocol");
@@ -29,8 +29,9 @@ public class DeleteNoteProtocol {
       noteID = in.readLine();
       System.out.println(noteID);
 
-      Statement stmt = conn.createStatement();
-      stmt.execute(String.format(query, noteID));
+      this.query = this.conn.prepareStatement("DELETE from Notes WHERE noteID = ?");
+      query.setString(1, noteID);
+      query.execute();
 
     } catch (UnknownHostException e) {
         System.err.println("Don't know about host.");

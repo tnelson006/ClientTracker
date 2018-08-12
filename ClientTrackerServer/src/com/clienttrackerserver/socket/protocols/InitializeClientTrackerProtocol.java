@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.UnknownHostException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -23,9 +23,9 @@ public class InitializeClientTrackerProtocol {
   PrintWriter out;
   BufferedReader in;
   Connection conn;
-  String queryCounselor = "select firstName, lastName from Counselors where ID = %s";
-  String queryClients = "select * from Clients where counselorID = %s";
-  String queryNotes = "select * from Notes where clientID = %s";
+  PreparedStatement queryCounselor;
+  PreparedStatement queryClients;
+  PreparedStatement queryNotes;
 
   public InitializeClientTrackerProtocol(PrintWriter out, BufferedReader in, Connection conn) {
     System.out.println("Instantiating InitializeClientTrackerProtocol");
@@ -41,8 +41,9 @@ public class InitializeClientTrackerProtocol {
       counselorID = in.readLine();
       System.out.println("Counselor ID: " + counselorID);
 
-      Statement stmtCounselor = conn.createStatement();
-      ResultSet rsCounselor = stmtCounselor.executeQuery(String.format(queryCounselor, counselorID));
+      this.queryCounselor = this.conn.prepareStatement("select firstName, lastName from Counselors where ID = ?");
+      queryCounselor.setString(1, counselorID);
+      ResultSet rsCounselor = queryCounselor.executeQuery();
       if(rsCounselor.next()){
         System.out.println("Counselor First Name: " + rsCounselor.getString(1));
         out.println(rsCounselor.getString(1));//Counselor First Name
@@ -50,8 +51,9 @@ public class InitializeClientTrackerProtocol {
         out.println(rsCounselor.getString(2));//Counselor Last Name
       }
 
-      Statement stmtClients = conn.createStatement();
-      ResultSet rsClients = stmtClients.executeQuery(String.format(queryClients, counselorID));
+      this.queryClients = this.conn.prepareStatement("select * from Clients where counselorID = ?");
+      queryClients.setString(1, counselorID);
+      ResultSet rsClients = queryClients.executeQuery();
       while (rsClients.next()) {
         System.out.println("Object type: 1");
         out.println(1);//Signal that client info in inbound
@@ -62,8 +64,9 @@ public class InitializeClientTrackerProtocol {
         System.out.println("Last Name: " + rsClients.getString(4));
         out.println(rsClients.getString(4));//Last Name
 
-        Statement stmtNotes = conn.createStatement();
-        ResultSet rsNotes = stmtNotes.executeQuery(String.format(queryNotes, rsClients.getString(1)));
+        this.queryNotes = this.conn.prepareStatement("select * from Notes where clientID = ?");
+        queryNotes.setString(1, rsClients.getString(1));
+        ResultSet rsNotes = queryNotes.executeQuery();
         while (rsNotes.next()) {
           System.out.println("   Object type: 2");
           out.println(2);//Signal that note info in inbound

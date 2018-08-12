@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.UnknownHostException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,9 +24,9 @@ public class NewUserProtocol {
   PrintWriter out;
   BufferedReader in;
   Connection conn;
-  String availableUsername = "select username from Users where username = '%s'";
-  String queryUsers = "insert into Users(username, hashedPassword, counselorID) values('%s', '%s', %s)";
-  String queryCounselors = "insert into Counselors(firstName, lastName) values('%s', '%s')";
+  PreparedStatement availableUsername;
+  PreparedStatement queryCounselors;
+  PreparedStatement queryUsers;
 
   public NewUserProtocol(PrintWriter out, BufferedReader in, Connection conn) {
     System.out.println("Instantiating NewUserProtocol");
@@ -46,36 +47,44 @@ public class NewUserProtocol {
       lastName = in.readLine();
       System.out.println(lastName);
 
-      Statement stmtAvailableUsers = conn.createStatement();
-      ResultSet rsAvailableUsers = stmtAvailableUsers.executeQuery(String.format(availableUsername, username));
+      this.availableUsername = this.conn.prepareStatement("select username from Users where username = ?");
+      availableUsername.setString(1, username);
+      ResultSet rsAvailableUsers = availableUsername.executeQuery();
 
       //Indicate that the username is already taken
       if (rsAvailableUsers.next()) {
-        System.out.println("Testing 1");
+        System.out.println("This username is already taken!");
         out.println("-1");
       }
 
-      Statement stmtCounselors = conn.createStatement();
-      boolean success = stmtCounselors.execute(String.format(queryCounselors, firstName, lastName));
+      this.queryCounselors = this.conn.prepareStatement("insert into Counselors(firstName, lastName) values(?, ?)");
+      queryCounselors.setString(1, firstName);
+      queryCounselors.setString(2, lastName);
+      boolean success = queryCounselors.execute();
       System.out.println("success: " + success);
 
-      int counselorID = -1;
+      String counselorID = "-1";
       Statement stmtID = conn.createStatement();
       ResultSet rs = stmtID.executeQuery("SELECT LAST_INSERT_ID()");
       if (rs.next()) {
         System.out.println("Testing 1.5");
-        counselorID = Integer.parseInt(rs.getString(1));
+        counselorID = rs.getString(1);
       } else {
         System.out.println("Testing 2");
         out.println("-1"); //Indicate an error to the client
       }
 
-      Statement stmtUsers = conn.createStatement();
       System.out.println("Testing 3");
-      stmtUsers.execute(String.format(queryUsers, username, hashedPassword, counselorID));
+
+      this.queryUsers = this.conn.prepareStatement("insert into Users(username, hashedPassword, counselorID) values(?, ?, ?)");
+      queryUsers.setString(1, username);
+      queryUsers.setString(2, hashedPassword);
+      queryUsers.setString(3, counselorID);
+      queryUsers.execute();
+
       System.out.println("Testing 4");
 
-      out.println(Integer.toString(counselorID));
+      out.println(counselorID);
 
     } catch (UnknownHostException e) {
         System.err.println("Don't know about host.");

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.UnknownHostException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,7 +24,7 @@ public class AddClientProtocol {
   PrintWriter out;
   BufferedReader in;
   Connection conn;
-  String query = "insert into Clients(counselorID, firstName, lastName) values(%s, '%s', '%s')";
+  PreparedStatement query;
 
   public AddClientProtocol(PrintWriter out, BufferedReader in, Connection conn) {
     System.out.println("Instantiating AddClientProtocol");
@@ -42,9 +43,13 @@ public class AddClientProtocol {
       clientLastName = in.readLine();
       System.out.println(clientLastName);
 
-      Statement stmt = conn.createStatement();
-      stmt.execute(String.format(query, counselorID, clientFirstName, clientLastName));
+      this.query = this.conn.prepareStatement("insert into Clients(counselorID, firstName, lastName) values(?, ?, ?)");
+      query.setString(1, counselorID);
+      query.setString(2, clientFirstName);
+      query.setString(3, clientLastName);
+      query.execute();
 
+      Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
       if (rs.next()) {
         out.println(rs.getString(1));
