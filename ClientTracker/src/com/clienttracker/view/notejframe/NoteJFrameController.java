@@ -62,6 +62,7 @@ public class NoteJFrameController implements ActionListener{
 		Note newNote = noteJFrame.getEnteredData();
     Note tempNote = (Note)mainJFrameController.getMainJFrame().getNoteListValue();
     int noteID = tempNote.getNoteID();
+    newNote.setNoteID(noteID);
     ClientTracker.clientComm.editNoteComm(noteID, newNote);
 
     mainJFrameController.editNote(newNote);
