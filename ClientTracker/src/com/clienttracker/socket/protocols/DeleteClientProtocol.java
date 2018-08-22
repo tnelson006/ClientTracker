@@ -1,4 +1,3 @@
-
 package com.clienttracker.socket.protocols;
 
 import com.clienttracker.model.domain.Client;
@@ -6,8 +5,9 @@ import com.clienttracker.model.domain.Client;
 import java.io.PrintWriter;
 
 /**
- *
- * @author T-Nel
+ * DeleteClientProtocol sends the necessary information to the server to delete
+ * an existing client. Due to how the database handles delete operations, all
+ * associated notes are automatically deleted as well.
  */
 public class DeleteClientProtocol {
 

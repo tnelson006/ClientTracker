@@ -8,8 +8,6 @@ import java.util.List;
  * This class serves as the domain object for clients. It possesses the
  * information for a specific client, and contains all the getters/setters
  * for the class.
- *
- * @author Travis Nelson
  */
 public class Client implements Serializable{
 

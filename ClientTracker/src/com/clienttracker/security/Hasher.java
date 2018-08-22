@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clienttracker.security;
 
 import java.security.MessageDigest;
@@ -10,8 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import javax.xml.bind.DatatypeConverter;
 
 /**
- *
- * @author T-Nel
+ * The Hasher class is used to create SHA256 and SHA512 hash values.
  */
 public class Hasher {
 

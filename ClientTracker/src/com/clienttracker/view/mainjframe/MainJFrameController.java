@@ -15,9 +15,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
- * @author Travis Nelson
- *
- * This class handles all event listeners for the main window and passes data from the UI to other classes.
+ * MainJFrameController handles all event listeners for the main window and
+ * passes data from the UI to other classes.
  */
 public class MainJFrameController implements ActionListener{
 

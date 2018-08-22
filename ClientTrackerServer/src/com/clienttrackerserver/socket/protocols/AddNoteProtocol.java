@@ -11,8 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- *
- * @author T-Nel
+ * AddNoteProtocol adds a new note to the database.
  */
 public class AddNoteProtocol {
 

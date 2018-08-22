@@ -12,9 +12,7 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 /**
- * @author Travis Nelson
- *
- * This class creates and displays all of the UI elements for the main window.
+ * MainJFrame creates and displays all of the UI elements for the main window.
  */
 public class MainJFrame extends javax.swing.JFrame{
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clienttracker.socket.protocols;
 
 import com.clienttracker.security.Crypter;
@@ -12,8 +7,8 @@ import java.io.PrintWriter;
 import java.net.UnknownHostException;
 
 /**
- *
- * @author T-Nel
+ * NewUserProtocol sends the necessary information to the server to create a
+ * new user.
  */
 public class NewUserProtocol {
 

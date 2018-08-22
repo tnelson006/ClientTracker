@@ -4,23 +4,14 @@ import com.clienttracker.main.ClientTracker;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-
 import com.clienttracker.model.domain.Client;
 import com.clienttracker.view.mainjframe.MainJFrameController;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
 
 /**
- * @author Travis Nelson
- *
- * This class handles all event listeners for the create client window and passes data
- * from the UI to other classes.
+ * ClientJFrameController handles all event listeners for ClientJFrame and
+ * passes data from the UI to other classes.
  */
 public class ClientJFrameController implements ActionListener, KeyListener{
 

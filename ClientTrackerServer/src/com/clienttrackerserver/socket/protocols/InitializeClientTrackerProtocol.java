@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clienttrackerserver.socket.protocols;
 
 import java.io.BufferedReader;
@@ -15,8 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author T-Nel
+ * InitializeClientTrackerProtocol sends all client data from database, for a
+ * given user, to the client application to decrypt and display.
  */
 public class InitializeClientTrackerProtocol {
 

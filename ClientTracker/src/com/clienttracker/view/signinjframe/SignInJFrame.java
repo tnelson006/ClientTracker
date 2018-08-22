@@ -6,9 +6,8 @@ import com.clienttracker.model.domain.Note;
 import java.util.ArrayList;
 
 /**
- * @author Travis Nelson
- *
- * This class creates and displays all of the UI elements for the CreateClient window.
+ * SignInJFrame creates and displays all of the UI elements for the Sign In
+ * window.
  */
 public class SignInJFrame extends javax.swing.JFrame{
 

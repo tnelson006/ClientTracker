@@ -1,4 +1,3 @@
-
 package com.clienttrackerserver.main;
 
 import com.clienttrackerserver.socket.protocols.AddClientProtocol;
@@ -14,8 +13,9 @@ import java.io.*;
 import java.sql.Connection;
 
 /**
- *
- * @author T-Nel
+ * ClientTrackerServerThread takes a newly created socket connection, determines
+ * which protocol the client intends to utilize, and creates an instance of the
+ * given protocol.
  */
 public class ClientTrackerServerThread extends Thread {
     private Socket socket = null;

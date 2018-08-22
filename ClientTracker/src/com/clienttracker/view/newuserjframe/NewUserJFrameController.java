@@ -10,10 +10,8 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 /**
- * @author Travis Nelson
- *
- * This class handles all event listeners for the create client window and passes data
- * from the UI to other classes.
+ * NewUserJFrameController handles all event listeners for the new user window
+ * and passes data from the UI to other classes.
  */
 public class NewUserJFrameController implements ActionListener, KeyListener{
 

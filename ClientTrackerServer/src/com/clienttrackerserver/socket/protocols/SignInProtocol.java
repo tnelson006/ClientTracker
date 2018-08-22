@@ -1,4 +1,3 @@
-
 package com.clienttrackerserver.socket.protocols;
 
 import java.io.BufferedReader;
@@ -11,8 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author T-Nel
+ * SignInProtocol checks if the username and password match what is in the
+ * database.
  */
 public class SignInProtocol {
 

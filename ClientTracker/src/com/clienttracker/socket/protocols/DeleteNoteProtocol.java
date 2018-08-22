@@ -1,11 +1,10 @@
-
 package com.clienttracker.socket.protocols;
 
 import java.io.PrintWriter;
 
 /**
- *
- * @author T-Nel
+ * DeleteNoteProtocol sends the necessary information to the server to delete
+ * an existing note.
  */
 public class DeleteNoteProtocol {
 

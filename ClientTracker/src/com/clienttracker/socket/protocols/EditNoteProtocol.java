@@ -6,8 +6,8 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 
 /**
- *
- * @author T-Nel
+ * EditNoteProtocol sends the necessary information to the server to edit an
+ * existing client.
  */
 public class EditNoteProtocol {
 

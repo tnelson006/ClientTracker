@@ -1,19 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clienttrackerserver.main;
 
-/**
- *
- * @author T-Nel
- */
 import java.net.*;
 import java.io.*;
 
 import java.sql.*;
 
+/**
+ * ClientTrackerServer serves as the launch point for the server application.
+ * It establishes a connection to the database, and then await socket
+ * connections. Each new connection results in a ClientTrackerServerThread
+ * object being created.
+ */
 public class ClientTrackerServer {
     public static void main(String[] args) throws IOException {
       Connection conn;

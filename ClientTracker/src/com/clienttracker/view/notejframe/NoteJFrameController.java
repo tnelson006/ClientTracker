@@ -9,10 +9,8 @@ import com.clienttracker.model.domain.Note;
 import com.clienttracker.view.mainjframe.MainJFrameController;
 
 /**
- * @author Travis Nelson
- *
- * This class handles all event listeners for the add note window and passes data
- * from the UI to other classes.
+ * NoteJFrameController handles all event listeners for the note window and
+ * passes data from the UI to other classes.
  */
 public class NoteJFrameController implements ActionListener{
 

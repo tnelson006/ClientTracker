@@ -8,9 +8,7 @@ import com.clienttracker.view.mainjframe.MainJFrameController;
 import java.util.ArrayList;
 
 /**
- * @author Travis Nelson
- *
- * This class creates and displays all of the UI elements for the CreateClient window.
+ * ClientJFrame creates and displays all of the UI elements for the CreateClient window.
  */
 public class ClientJFrame extends javax.swing.JFrame{
 

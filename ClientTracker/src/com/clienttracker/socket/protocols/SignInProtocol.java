@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clienttracker.socket.protocols;
 
 import java.io.BufferedReader;
@@ -11,8 +6,8 @@ import java.io.PrintWriter;
 import java.net.UnknownHostException;
 
 /**
- *
- * @author T-Nel
+ * SignInProtocol sends the necessary information to the server to ensure the
+ * user is valid.
  */
 public class SignInProtocol {
 

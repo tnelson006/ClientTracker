@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clienttracker.view.notejframe;
 
 import java.awt.Dimension;
@@ -13,9 +8,7 @@ import com.clienttracker.model.domain.Note;
 import com.clienttracker.view.mainjframe.MainJFrameController;
 
 /**
- * @author Travis Nelson
- *
- * This class creates and displays all of the UI elements for the AddNote window.
+ * NoteJFrame creates and displays all of the UI elements for the Note window.
  */
 public class NoteJFrame extends javax.swing.JFrame{
 

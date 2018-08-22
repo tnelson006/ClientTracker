@@ -1,9 +1,5 @@
 package com.clienttracker.socket.ClientComm;
 
-/**
- *
- * @author T-Nel
- */
 import com.clienttracker.model.domain.Client;
 import com.clienttracker.model.domain.Counselor;
 import com.clienttracker.model.domain.Note;
@@ -19,6 +15,12 @@ import com.clienttracker.socket.protocols.SignInProtocol;
 import java.io.*;
 import java.net.*;
 
+/**
+ * ClientComm is used to initiate all communication between the client and the
+ * server. All necessary information for a given protocol is passed to this
+ * class, and then the respective function will instantiate the appropriate
+ * protocol and pass it the necessary information and sockets.
+ */
 public class ClientComm {
 
   Socket ccSocket;

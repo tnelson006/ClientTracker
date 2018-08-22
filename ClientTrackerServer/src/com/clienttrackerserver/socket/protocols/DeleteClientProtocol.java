@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clienttrackerserver.socket.protocols;
 
 import java.io.BufferedReader;
@@ -13,8 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- *
- * @author T-Nel
+ * DeleteClientProtocol deletes an existing client in the database. The delete
+ * operation is a cascade, so it also deletes all corresponding notes for the
+ * given client.
  */
 public class DeleteClientProtocol {
 

@@ -12,8 +12,6 @@ import java.util.ArrayList;
 /**
  * This class contains the client side main function that will create and manage
  * various classes.
- *
- * @author Travis Nelson
  */
 public class ClientTracker {
 

@@ -9,8 +9,8 @@ import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 
 /**
- *
- * @author T-Nel
+ * AddNoteProtocol sends the necessary information to the server to create a
+ * new note.
  */
 public class AddNoteProtocol {
 

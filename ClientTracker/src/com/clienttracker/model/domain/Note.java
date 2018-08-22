@@ -9,10 +9,8 @@ import java.util.Objects;
  * This class serves as the domain object for notes. It possesses the text
  * of the note and the local datetime that the object was created. It also
  * contains all the getters/setters for the class.
- *
- * @author Travis Nelson
  */
-public class Note{
+public class Note {
 
   private String text;
   private Integer noteID = null;

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 /**
  * This class holds all of the information necessary for a counselor.
  * Getters/setters are defined within this file.
- *
- * @author Travis Nelson
  */
 public class Counselor {
 

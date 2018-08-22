@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clienttracker.socket.protocols;
 
 import com.clienttracker.model.domain.Client;
@@ -20,8 +15,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
- * @author T-Nel
+ * InitializeClientTrackerProtocol receives all the client and note data
+ * belonging to the signed in user.
  */
 public class InitializeClientTrackerProtocol {
 
@@ -53,6 +48,7 @@ public class InitializeClientTrackerProtocol {
       System.out.println("Client: " + fromClient);
       out.println(fromClient);
 
+      //Send the counselor ID so all related data can be sent back
       System.out.println("Client: " + co.getUniqueID());
       out.println(co.getUniqueID());
 
@@ -63,6 +59,11 @@ public class InitializeClientTrackerProtocol {
       fromServer = in.readLine(); //Last Name
       System.out.println("Server: " + fromServer);
       co.setLastName(crypter.decrypt(fromServer));
+
+      /*
+       * Every counselor can have 'n' clients with 'n' notes each, so we are
+       * trying to receive all of that data right now.
+       */
 
       //Are there any client objects to create?
       fromServer = in.readLine();
@@ -111,6 +112,11 @@ public class InitializeClientTrackerProtocol {
           fromServer = in.readLine();
           objectType = Integer.parseInt(fromServer);
         }
+
+        /*
+         * Exiting the above while means that all clients have been received
+         * by the client
+         */
         Client tempClient = new Client(clientID, clientFirstName, clientLastName, notes);
         co.addClient(tempClient);
       }

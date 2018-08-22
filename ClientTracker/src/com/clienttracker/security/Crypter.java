@@ -1,24 +1,17 @@
-
 package com.clienttracker.security;
 
-import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.SecretKeyFactorySpi;
-import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- *
- * @author T-Nel
+ * The Crypter class is used to encrypt and decrypt user data. It uses the
+ * user's password as the seed for the AES cipher.
  */
 public class Crypter {
 

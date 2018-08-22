@@ -8,8 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- *
- * @author T-Nel
+ * DeleteNoteProtocol deletes an existing note in the database.
  */
 public class DeleteNoteProtocol {
 
